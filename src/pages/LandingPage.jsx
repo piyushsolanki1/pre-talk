@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ShieldCheck,
   Sparkles,
@@ -31,16 +32,19 @@ const features = [
 ];
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
   return (
     <main className="min-h-screen overflow-hidden bg-[#0B0B0F] text-white">
       {/* Hero */}
       <section className="relative flex min-h-[85vh] flex-col items-center px-4 pt-20 text-center">
         {/* Background glow */}
-        <div className="pointer-events-none absolute left-1/2 top-20 -z-0 h-96 w-96 -translate-x-1/2 rounded-full bg-[#5a4cc6]/20 blur-[120px]" />
+        <div className="pointer-events-none absolute left-1/2 top-20 h-96 w-96 -translate-x-1/2 rounded-full bg-[#5a4cc6]/20 blur-[120px]" />
 
         {/* Online indicator */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#2A2A38] bg-[#16161D] px-4 py-2 text-sm text-[#b6b3cd]">
           <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
+
           <span>
             <span className="font-semibold text-white">455</span>{" "}
             strangers are online now
@@ -62,14 +66,21 @@ const LandingPage = () => {
         </p>
 
         {/* CTA */}
-        <button className="group inline-flex items-center gap-3 rounded-2xl bg-[#5a4cc6] px-7 py-4 text-lg font-semibold shadow-lg shadow-[#5a4cc6]/20 transition-all duration-200 hover:-translate-y-1 hover:bg-[#6b5bdd] hover:shadow-xl hover:shadow-[#5a4cc6]/30">
+        <button
+          onClick={() => navigate("/matching")}
+          className="group inline-flex items-center gap-3 rounded-2xl bg-[#5a4cc6] px-7 py-4 text-lg font-semibold shadow-lg shadow-[#5a4cc6]/20 transition-all duration-200 hover:-translate-y-1 hover:bg-[#6b5bdd] hover:shadow-xl hover:shadow-[#5a4cc6]/30"
+        >
           Start Talking
+
           <ArrowRight
             size={20}
-            className="transition-transform duration-200 group-hover:translate-x-0"
+            className="transition-transform duration-200"
           />
         </button>
 
+        <p className="mt-4 text-sm text-[#77758a]">
+          No signup. No profile. Just conversation.
+        </p>
       </section>
 
       {/* Features */}
@@ -77,7 +88,6 @@ const LandingPage = () => {
         <div className="mx-auto max-w-6xl">
           {/* Section heading */}
           <div className="mx-auto mb-14 max-w-2xl text-center">
-
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Built for real conversation
             </h2>

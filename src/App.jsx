@@ -1,16 +1,28 @@
-import { useState } from 'react'
-import LandingPage from './LandingPage'
-import Footer from './footer'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import LandingPage from "./pages/LandingPage";
+import Matching from "./pages/matching";
+import Footer from "./components/footer";
+import "./App.css";
 
 function App() {
-
   return (
-    <>
-  <LandingPage />
-  <Footer />
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <LandingPage />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route path="/matching" element={<Matching />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
