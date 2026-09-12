@@ -3,6 +3,9 @@ import "lucide-react"
 import {
     SettingsIcon,
     MoonIcon,
+    Crown,
+    
+
 } from "lucide-react"
 
 const HomePage = () => {
@@ -55,19 +58,19 @@ const HomePage = () => {
 
 
       {/* Hero */}
-      <section className="mx-auto flex min-h-[calc(100vh-80px)] w-full max-full items-center gap-12 px-6 lg:px-10">
+      <section className="mx-auto flex min-h-[calc(100vh-80px)] w-full max-full mt-12 gap-12 px-6 lg:px-10">
 
         {/* ================= LEFT SIDE ================= */}
-        <div className="flex flex-1 flex-col items-start justify-center ">
+        <div className="flex flex-1 flex-col">
 
           {/* User Card */}
           <div className="flex w-full max-w-2xl items-center justify-between rounded-2xl border border-[#77889a44] bg-white/[0.03] p-5">
 
             {/* User Info */}
-            <div className="flex items-center gap-4">
+            <div className="flex gap-6">
 
               {/* Avatar */}
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-lg font-semibold">
+              <div className="flex h-14 w-14 items-center justify-center border-2 rounded-full bg-white/10 text-lg font-semibold">
                 S
               </div>
 
@@ -86,15 +89,15 @@ const HomePage = () => {
 
 
             {/* User Actions */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
 
-              <button className="rounded-lg border border-[#77889a44] px-3 py-2 text-xs text-gray-400 transition hover:bg-white/5 hover:text-white">
+              <button className="rounded-lg border border-[#77889a44] px-3 py-2 text-xs text-gray-900 transition hover:bg-gray-300">
                 <span>
                     <SettingsIcon size={14} />
                 </span>
               </button>
 
-              <button className="rounded-lg border border-[#77889a44] px-3 py-2 text-xs text-gray-400 transition hover:bg-white/5 hover:text-white">
+              <button className="rounded-lg border border-[#77889a44] px-3 py-2 text-xs text-gray-900 transition hover:bg-gray-300">
 <span>
                     <MoonIcon size={14} />
     </span>              </button>
@@ -105,28 +108,44 @@ const HomePage = () => {
 
 
           {/* Hero Content */}
-          <div className="mt-12">
+          <div className="mt-12 flex flex-row p-3">
 
-            <p className="mb-4 text-sm uppercase tracking-[0.2em] text-gray-500">
-              Meet someone new
-            </p>
+           <div className="max-w-3/4 grid gap-4">
+           <div className="flex h-14 w-14 items-center justify-center border-2 rounded-full bg-white/10 text-lg font-semibold">
+                <span>
+<Crown size={30} />
+                </span>
+              </div>
+           <div className="flex h-14 w-14 items-center justify-center border-2 rounded-full bg-white/10 text-lg font-semibold">
+                <span>
+<Crown size={30} />
+                </span>
+              </div>
+           <div className="flex h-14 w-14 items-center justify-center border-2 rounded-full bg-white/10 text-lg font-semibold">
+                <span>
+<Crown size={30} />
+                </span>
+              </div>
+           <div className="flex h-14 w-14 items-center justify-center border-2 rounded-full bg-white/10 text-lg font-semibold">
+                <span>
+<Crown size={30} />
+                </span>
+              </div>
+           <div className="flex h-14 w-14 items-center justify-center border-2 rounded-full bg-white/10 text-lg font-semibold">
+                <span>
+<Crown size={30} />
+                </span>
+              </div>
+           <div className="flex h-14 w-14 items-center justify-center border-2 rounded-full bg-white/10 text-lg font-semibold">
+                <span>
+<Crown size={30} />
+                </span>
+              </div>
+          
+           </div>
+           <div>
 
-            <h1 className="max-w-2xl text-5xl font-bold leading-tight tracking-tight lg:text-6xl">
-              Start a conversation
-              <span className="block text-gray-500">
-                with a stranger.
-              </span>
-            </h1>
-
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-gray-400">
-              Talk to someone you've never met. No profile,
-              no pressure, just a genuine conversation.
-            </p>
-
-            {/* Start Button */}
-            <button className="mt-8 rounded-xl bg-white px-8 py-4 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-gray-200">
-              Start Talking
-            </button>
+           </div>
 
           </div>
 
