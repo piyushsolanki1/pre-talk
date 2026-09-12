@@ -1,7 +1,10 @@
 import React from "react";
 import { Search, ShieldCheck, X, Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
 const Matching = () => {
+  const navigate = useNavigate();
+
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0B0B0F] px-4 text-white">
       
@@ -56,7 +59,8 @@ const Matching = () => {
         
 
         {/* Cancel button */}
-        <button onClick={useNavigate()} className="mt-8 inline-flex items-center gap-2 rounded-xl border border-[#292934] bg-[#111117] px-5 py-3 text-sm font-medium text-[#aaa8b8] transition hover:border-[#3a3a47] hover:bg-[#16161D] hover:text-white">
+        <button           onClick={() => navigate("/homePage")}
+className="mt-8 inline-flex items-center gap-2 rounded-xl border border-[#292934] bg-[#111117] px-5 py-3 text-sm font-medium text-[#aaa8b8] transition hover:border-[#3a3a47] hover:bg-[#16161D] hover:text-white">
           <X size={16} />
           Cancel
         </button>
