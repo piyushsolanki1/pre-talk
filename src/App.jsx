@@ -12,12 +12,18 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<><LandingPage />  
-          <Footer /> </> }/>
+          element={
+            <>
+              <LandingPage />
+             
+            </>
+          }
+        />
 
         <Route path="/matching" element={<Matching />} />
         <Route path="/HomePage" element={<HomePage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

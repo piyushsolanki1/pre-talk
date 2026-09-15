@@ -35,15 +35,15 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#0B0B0F] text-white">
+    <main className="min-h-screen overflow-hidden bg-white">
       {/* Hero */}
-      <section className="relative flex min-h-[85vh] flex-col items-center px-4 pt-20 text-center">
+      <section className="relative flex h-fit flex-col items-center px-4 pt-20 text-center mb-8">
         {/* Background glow */}
         <div className="pointer-events-none absolute left-1/2 top-20 h-96 w-96 -translate-x-1/2 rounded-full bg-[#5a4cc6]/20 blur-[120px]" />
 
         {/* Online indicator */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#2A2A38] bg-[#16161D] px-4 py-2 text-sm text-[#b6b3cd]">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
+          <span className="h-2 w-2 animate-pulse rounded-full bg-purple-500" />
 
           <span>
             <span className="font-semibold text-white">455</span>{" "}
@@ -54,7 +54,7 @@ const LandingPage = () => {
         {/* Heading */}
         <h1 className="relative z-10 mb-6 max-w-4xl text-5xl font-bold leading-tight tracking-tight sm:text-6xl md:text-7xl">
           Talk to{" "}
-          <span className="bg-gradient-to-r from-[#7c6cff] to-[#5a4cc6] bg-clip-text text-transparent">
+          <span className="text-purple-400 ">
             someone you've never met
           </span>
         </h1>
@@ -67,8 +67,8 @@ const LandingPage = () => {
 
         {/* CTA */}
         <button
-          onClick={() => navigate("/matching")}
-          className="group inline-flex items-center gap-3 rounded-2xl bg-[#5a4cc6] px-7 py-4 text-lg font-semibold shadow-lg shadow-[#5a4cc6]/20 transition-all duration-200 hover:-translate-y-1 hover:bg-[#6b5bdd] hover:shadow-xl hover:shadow-[#5a4cc6]/30"
+          onClick={() => navigate("/homepage")}
+          className="group inline-flex items-center gap-3 rounded-2xl bg-purple-400 px-7 py-4 text-lg font-semibold shadow-lg shadow-[#5a4cc6]/20 transition-all duration-200 hover:-translate-z-1 hover:bg-purple-600 hover:shadow-2xl hover:shadow-[#5a4cc6]/30"
         >
           Start Talking
 
@@ -78,21 +78,21 @@ const LandingPage = () => {
           />
         </button>
 
-        <p className="mt-4 text-sm text-[#77758a]">
+        <p className="mt-4 text-md font-semibold">
           No signup. No profile. Just conversation.
         </p>
       </section>
 
       {/* Features */}
-      <section className="border-t border-[#1D1D26] px-4 py-24">
+      <section className=" px-4 py-24 bg-purple-50">
         <div className="mx-auto max-w-6xl">
           {/* Section heading */}
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-3xl font-bold sm:text-4xl">
               Built for real conversation
             </h2>
 
-            <p className="mt-4 text-[#8f8da1]">
+            <p className="mt-4 font-semibold">
               Everything you need to meet interesting people without the
               unnecessary social-media clutter.
             </p>
@@ -106,17 +106,17 @@ const LandingPage = () => {
               return (
                 <div
                   key={feature.title}
-                  className="group rounded-3xl border border-[#24242F] bg-[#111117] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#5a4cc6]/40 hover:bg-[#15151D]"
+                  className="group rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-gray-100 bg-gray-50 hover:shadow-2xl"
                 >
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#5a4cc6]/10 text-[#7c6cff] transition-colors group-hover:bg-[#5a4cc6]/20">
+                  <span className="mb-5 flex p-2 w-fit h-fit items-center justify-center rounded-xl bg-purple-200 text-purple-600 transition-colors group-hover:bg-purple-300">
                     <Icon size={21} />
-                  </div>
+                  </span>
 
                   <h3 className="mb-2 text-lg font-semibold">
                     {feature.title}
                   </h3>
 
-                  <p className="text-sm leading-relaxed text-[#858394]">
+                  <p className="text-sm leading-relaxed font-semibold text-[#858394]">
                     {feature.desc}
                   </p>
                 </div>
