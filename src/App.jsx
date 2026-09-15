@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import Matching from "./pages/matching";
 import Footer from "./components/footer";
 import HomePage from "./pages/HomePage";
+import ChatPage from "./pages/ChatPage";
 import "./App.css";
 
 function App() {
@@ -12,18 +13,13 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={
-            <>
-              <LandingPage />
-             
-            </>
-          }
-        />
+          element={<><LandingPage />  
+          <Footer /> </> }/>
 
         <Route path="/matching" element={<Matching />} />
         <Route path="/HomePage" element={<HomePage />} />
+<Route path="/chat" element={<ChatPage />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 }

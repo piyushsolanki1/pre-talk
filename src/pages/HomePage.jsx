@@ -12,7 +12,7 @@ import {
   X,
   Globe2,
   Search,
-  ArrowUp
+  ArrowUp,
 } from "lucide-react";
 
 const HomePage = () => {
@@ -23,8 +23,8 @@ const HomePage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const [showCountry, setShowCountry] = useState(false);
-const [country, setCountry] = useState("All Countries");
-const [countrySearch, setCountrySearch] = useState("");
+  const [country, setCountry] = useState("All Countries");
+  const [countrySearch, setCountrySearch] = useState("");
 
   const filteredCountries = countries.filter((item) =>
     item.toLowerCase().includes(countrySearch.toLowerCase())
@@ -34,9 +34,9 @@ const [countrySearch, setCountrySearch] = useState("");
     <main className="min-h-screen w-full bg-white text-black">
       {/* ================= NAVBAR ================= */}
       <header className="sticky top-0 z-50 border-b bg-white shadow-sm">
-        <nav className="mx-auto max-w-7xl px-6 lg:px-10">
+        <nav className="mx-auto max-w-7xl px-4 lg:px-10">
           {/* Top Navbar */}
-          <div className="flex items-center justify-between py-5">
+          <div className="flex items-center justify-between py-4">
             {/* Mobile Menu Button */}
             <button
               type="button"
@@ -49,31 +49,24 @@ const [countrySearch, setCountrySearch] = useState("");
 
             {/* Logo */}
             <div>
-              <span className="text-2xl font-bold tracking-tight text-[#540edf]">
+              <span className="text-2xl font-bold tracking-tight text-purple-500">
+               <button onClick={() => navigate("/")}>
                 Pretalk
+               </button>
               </span>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden items-center gap-8 text-sm font-semibold text-gray-700 md:flex">
-              <a
-                href="#discover"
-                className="transition hover:text-[#540edf]"
-              >
+            <div className="hidden items-center gap-8 text-md font-semibold text-gray-700 md:flex">
+              <a href="#discover" className="transition hover:text-[#540edf]">
                 Discover
               </a>
 
-              <a
-                href="#friends"
-                className="transition hover:text-[#540edf]"
-              >
+              <a href="#friends" className="transition hover:text-[#540edf]">
                 Friends
               </a>
 
-              <a
-                href="#safety"
-                className="transition hover:text-[#540edf]"
-              >
+              <a href="#safety" className="transition hover:text-[#540edf]">
                 Safety
               </a>
             </div>
@@ -165,14 +158,14 @@ const [countrySearch, setCountrySearch] = useState("");
       </aside>
 
       {/* ================= MAIN ================= */}
-      <section className="mx-auto w-full max-w-5xl px-6 py-12 lg:px-10">
+      <section className="mx-auto w-full max-w-5xl px-6 py-8 lg:px-10">
         {/* Description */}
-        <div className="mx-auto mb-8 max-w-4xl text-center text-gray-400">
+        <div className="mx-auto mb-4 text-center text-gray-400">
           Chat with random people worldwide - Be respectful, have fun, and
           follow our community guidelines.
         </div>
 
-        <div className="grid grid-cols-1 gap-8">
+        <div className="grid grid-cols-1 gap-4">
           {/* ================= INTEREST CARD ================= */}
           <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-8 shadow-xl">
             {/* Background Glow */}
@@ -232,26 +225,20 @@ const [countrySearch, setCountrySearch] = useState("");
                   </div>
 
                   <div className="mt-8">
-                    <div className="text-lg font-semibold">
-                      Max wait time
-                    </div>
+                    <div className="text-lg font-semibold">Max wait time</div>
 
                     <div className="mt-3 flex flex-wrap gap-3">
-                      {[
-                        "5 sec",
-                        "10 sec",
-                        "15 sec",
-                        "30 sec",
-                        "Unlimited",
-                      ].map((time) => (
-                        <button
-                          key={time}
-                          type="button"
-                          className="rounded-xl bg-white px-4 py-2 text-sm shadow-sm transition hover:-translate-y-0.5 hover:bg-purple-50 hover:shadow-md"
-                        >
-                          {time}
-                        </button>
-                      ))}
+                      {["5 sec", "10 sec", "15 sec", "30 sec", "Unlimited"].map(
+                        (time) => (
+                          <button
+                            key={time}
+                            type="button"
+                            className="rounded-xl bg-white px-4 py-2 text-sm shadow-sm transition hover:-translate-y-0.5 hover:bg-purple-50 hover:shadow-md"
+                          >
+                            {time}
+                          </button>
+                        )
+                      )}
                     </div>
                   </div>
                 </div>
@@ -307,9 +294,7 @@ const [countrySearch, setCountrySearch] = useState("");
                 <div className="mt-8">
                   {/* Gender */}
                   <div>
-                    <div className="text-lg font-semibold">
-                      Gender
-                    </div>
+                    <div className="text-lg font-semibold">Gender</div>
 
                     <div className="mt-3 flex flex-wrap gap-3">
                       <button
@@ -337,9 +322,7 @@ const [countrySearch, setCountrySearch] = useState("");
 
                   {/* Age */}
                   <div className="mt-8">
-                    <div className="text-lg font-semibold">
-                      Age range
-                    </div>
+                    <div className="text-lg font-semibold">Age range</div>
 
                     <div className="mt-3 flex items-center gap-3">
                       <input
@@ -348,9 +331,7 @@ const [countrySearch, setCountrySearch] = useState("");
                         className="w-24 rounded-xl bg-white p-3 text-center outline-none focus:ring-2 focus:ring-purple-300"
                       />
 
-                      <span className="text-gray-500">
-                        to
-                      </span>
+                      <span className="text-gray-500">to</span>
 
                       <input
                         type="number"
@@ -362,144 +343,139 @@ const [countrySearch, setCountrySearch] = useState("");
                 </div>
               )}
             </div>
-          
           </div>
 
-{/* ================= COUNTRY CARD ================= */}
-<div className="relative overflow-hidden rounded-2xl bg-purple-100 p-8 shadow-xl">
-  {/* Background Glow */}
-  <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
+          {/* ================= COUNTRY CARD ================= */}
+          <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-8 shadow-xl">
+            {/* Background Glow */}
+            <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
 
-  <div className="relative">
-    <div className="flex items-center justify-between">
-      {/* Title */}
-      <div className="flex gap-3">
-        <span className="flex h-fit w-fit rounded-xl border-2 border-purple-500 p-2">
-          <Globe2 size={30} className="text-purple-500" />
-        </span>
+            <div className="relative">
+              <div className="flex items-center justify-between">
+                {/* Title */}
+                <div className="flex gap-3">
+                  <span className="flex h-fit w-fit rounded-xl border-2 border-purple-500 p-2">
+                    <Globe2 size={30} className="text-purple-500" />
+                  </span>
 
-        <div>
-          <div className="text-xl font-semibold">
-            Country
-          </div>
+                  <div>
+                    <div className="text-xl font-semibold">Country</div>
 
-          <div className="mt-1 text-sm font-medium text-gray-600">
-            {country === "All Countries"
-              ? "Meet people from anywhere"
-              : `Looking for people from ${country}`}
-          </div>
-        </div>
-      </div>
+                    <div className="mt-1 text-sm font-medium text-gray-600">
+                      {country === "All Countries"
+                        ? "Meet people from anywhere"
+                        : `Looking for people from ${country}`}
+                    </div>
+                  </div>
+                </div>
 
-      {/* Open Country */}
-      <button
-        type="button"
-        onClick={() => setShowCountry(!showCountry)}
-        className="rounded-full bg-white p-2 shadow-md transition hover:bg-purple-50"
-        aria-label="Toggle country selection"
-      >
-        <ArrowDown
-          size={20}
-          className={`text-purple-500 transition-transform duration-300 ${
-            showCountry ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-    </div>
-
-    {/* Country Content */}
-    {showCountry && (
-      <div className="mt-8">
-        {/* Search */}
-        <div className="relative w-full">
-          <Search
-            size={18}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-          />
-
-          <input
-            type="text"
-            value={countrySearch}
-            onChange={(e) => setCountrySearch(e.target.value)}
-            placeholder="Search countries..."
-            className="w-full rounded-xl bg-white py-3 pl-10 pr-4 text-black shadow-sm outline-none ring-purple-300 transition focus:ring-2"
-          />
-        </div>
-
-        {/* Country List */}
-        <div className="mt-4 max-h-64 overflow-y-auto">
-          {/* All Countries */}
-          <button
-            type="button"
-            onClick={() => {
-              setCountry("All Countries");
-              setCountrySearch("");
-            }}
-            className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm shadow-sm transition ${
-              country === "All Countries"
-                ? "bg-white font-medium text-purple-600"
-                : "bg-white hover:bg-purple-50"
-            }`}
-          >
-            <span>🌎 All Countries</span>
-
-            {country === "All Countries" && (
-              <Check size={18} className="text-purple-500" />
-            )}
-          </button>
-
-          {/* Countries */}
-          <div className="mt-2 space-y-2">
-            {filteredCountries.length > 0 ? (
-              filteredCountries.map((item) => (
+                {/* Open Country */}
                 <button
-                  key={item}
                   type="button"
-                  onClick={() => {
-                    setCountry(item);
-                    setCountrySearch("");
-                  }}
-                  className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm shadow-sm transition ${
-                    country === item
-                      ? "bg-white font-medium text-purple-600"
-                      : "bg-white text-gray-700 hover:bg-purple-50"
-                  }`}
+                  onClick={() => setShowCountry(!showCountry)}
+                  className="rounded-full bg-white p-2 shadow-md transition hover:bg-purple-50"
+                  aria-label="Toggle country selection"
                 >
-                  <span>{item}</span>
-
-                  {country === item && (
-                    <Check size={18} className="text-purple-500" />
-                  )}
+                  <ArrowDown
+                    size={20}
+                    className={`text-purple-500 transition-transform duration-300 ${
+                      showCountry ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
-              ))
-            ) : (
-              <div className="py-8 text-center">
-                <p className="text-sm font-medium text-gray-700">
-                  No countries found
-                </p>
-
-                <p className="mt-1 text-xs text-gray-400">
-                  Try a different search
-                </p>
               </div>
-            )}
-          </div>
-        </div>
-      </div>
-    )}
-  </div>
-</div>
 
+              {/* Country Content */}
+              {showCountry && (
+                <div className="mt-8">
+                  {/* Search */}
+                  <div className="relative w-full">
+                    <Search
+                      size={18}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                    />
+
+                    <input
+                      type="text"
+                      value={countrySearch}
+                      onChange={(e) => setCountrySearch(e.target.value)}
+                      placeholder="Search countries..."
+                      className="w-full rounded-xl bg-white py-3 pl-10 pr-4 text-black shadow-sm outline-none ring-purple-300 transition focus:ring-2"
+                    />
+                  </div>
+
+                  {/* Country List */}
+                  <div className="mt-4 max-h-64 overflow-y-auto">
+                    {/* All Countries */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCountry("All Countries");
+                        setCountrySearch("");
+                      }}
+                      className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm shadow-sm transition ${
+                        country === "All Countries"
+                          ? "bg-white font-medium text-purple-600"
+                          : "bg-white hover:bg-purple-50"
+                      }`}
+                    >
+                      <span>🌎 All Countries</span>
+
+                      {country === "All Countries" && (
+                        <Check size={18} className="text-purple-500" />
+                      )}
+                    </button>
+
+                    {/* Countries */}
+                    <div className="mt-2 space-y-2">
+                      {filteredCountries.length > 0 ? (
+                        filteredCountries.map((item) => (
+                          <button
+                            key={item}
+                            type="button"
+                            onClick={() => {
+                              setCountry(item);
+                              setCountrySearch("");
+                            }}
+                            className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm shadow-sm transition ${
+                              country === item
+                                ? "bg-white font-medium text-purple-600"
+                                : "bg-white text-gray-700 hover:bg-purple-50"
+                            }`}
+                          >
+                            <span>{item}</span>
+
+                            {country === item && (
+                              <Check size={18} className="text-purple-500" />
+                            )}
+                          </button>
+                        ))
+                      ) : (
+                        <div className="py-8 text-center">
+                          <p className="text-sm font-medium text-gray-700">
+                            No countries found
+                          </p>
+
+                          <p className="mt-1 text-xs text-gray-400">
+                            Try a different search
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
 
           {/* ================= START NEW CHAT ================= */}
-          <div className="flex justify-center">
+          <div className="flex justify-center fixed bottom-15 right-0 left-0 ">
             <button
               type="button"
               onClick={() => navigate("/matching")}
-              className="flex items-center justify-center rounded-2xl bg-purple-300 p-3 text-2xl font-semibold shadow-xl transition hover:bg-purple-500 hover:shadow-2xl hover:shadow-purple-400/50"
+              className="flex items-center justify-center rounded-2xl bg-purple-300 p-3 text-2xl font-semibold shadow-xl transition hover:bg-purple-400 hover:shadow-2xl hover:shadow-purple-400/50"
             >
               Start New Chat
-              <ArrowRight size={30} className="ml-2" />
             </button>
           </div>
         </div>
