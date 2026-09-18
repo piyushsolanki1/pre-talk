@@ -7,12 +7,10 @@ import {
   Check,
   ListCheck,
   ArrowDown,
-  ArrowRight,
   Menu,
   X,
   Globe2,
   Search,
-  ArrowUp,
 } from "lucide-react";
 
 const HomePage = () => {
@@ -27,7 +25,7 @@ const HomePage = () => {
   const [countrySearch, setCountrySearch] = useState("");
 
   const filteredCountries = countries.filter((item) =>
-    item.toLowerCase().includes(countrySearch.toLowerCase())
+    item.toLowerCase().includes(countrySearch.toLowerCase()),
   );
 
   return (
@@ -50,9 +48,7 @@ const HomePage = () => {
             {/* Logo */}
             <div>
               <span className="text-2xl font-bold tracking-tight text-purple-500">
-               <button onClick={() => navigate("/")}>
-                Pretalk
-               </button>
+                <button onClick={() => navigate("/")}>Pretalk</button>
               </span>
             </div>
 
@@ -73,6 +69,7 @@ const HomePage = () => {
 
             {/* Desktop Sign In */}
             <button
+            onClick={() => navigate("/login")}
               type="button"
               className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium transition hover:border-purple-300 hover:bg-purple-50"
             >
@@ -237,7 +234,7 @@ const HomePage = () => {
                           >
                             {time}
                           </button>
-                        )
+                        ),
                       )}
                     </div>
                   </div>
@@ -469,11 +466,11 @@ const HomePage = () => {
           </div>
 
           {/* ================= START NEW CHAT ================= */}
-          <div className="flex justify-center fixed bottom-15 right-0 left-0 ">
+          <div className="flex fixed bottom-15 right-0 left-0 justify-center pointer-events-none">
             <button
               type="button"
               onClick={() => navigate("/matching")}
-              className="flex items-center justify-center rounded-2xl bg-purple-300 p-3 text-2xl font-semibold shadow-xl transition hover:bg-purple-400 hover:shadow-2xl hover:shadow-purple-400/50"
+              className=" pointer-events-auto flex items-center justify-center rounded-2xl bg-purple-300 p-3 text-2xl font-semibold shadow-xl transition hover:bg-purple-400 hover:shadow-2xl hover:shadow-purple-400/50"
             >
               Start New Chat
             </button>

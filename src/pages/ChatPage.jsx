@@ -3,13 +3,11 @@ import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   Send,
-  Smile,
   Image,
   Phone,
   Video,
   MoreVertical,
   UserRound,
-  X,
 } from "lucide-react";
 
 const ChatPage = () => {
@@ -93,21 +91,21 @@ const ChatPage = () => {
         <div className="flex items-center gap-1">
           <button
             type="button"
-            className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-50 sm:block"
+            className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 sm:block"
           >
             <Phone size={19} />
           </button>
 
           <button
             type="button"
-            className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-50 sm:block"
+            className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 sm:block"
           >
             <Video size={20} />
           </button>
 
           <button
             type="button"
-            className="rounded-xl p-2.5 text-gray-600 transition hover:bg-gray-100"
+            className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100"
           >
             <MoreVertical size={20} />
           </button>
