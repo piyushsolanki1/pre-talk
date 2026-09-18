@@ -54,13 +54,17 @@ const HomePage = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden items-center gap-8 text-md font-semibold text-gray-700 md:flex">
-              <a  href="/profile" className="transition hover:text-[#540edf]">
+              <button 
+              onClick={() => navigate("/profile")}
+              className="transition hover:text-[#540edf]">
                 Profile
-              </a>
+              </button>
 
-              <a href="/friends" className="transition hover:text-[#540edf]">
+              <button 
+              onClick={() => navigate("/friends")}
+              className="transition hover:text-[#540edf]">
                 Friends
-              </a>
+              </button>
 
               <a href="#safety" className="transition hover:text-[#540edf]">
                 Safety
