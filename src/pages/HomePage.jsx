@@ -54,11 +54,11 @@ const HomePage = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden items-center gap-8 text-md font-semibold text-gray-700 md:flex">
-              <a href="#discover" className="transition hover:text-[#540edf]">
-                Discover
+              <a  href="/profile" className="transition hover:text-[#540edf]">
+                Profile
               </a>
 
-              <a href="#friends" className="transition hover:text-[#540edf]">
+              <a href="/friends" className="transition hover:text-[#540edf]">
                 Friends
               </a>
 
@@ -81,7 +81,7 @@ const HomePage = () => {
 
       {/* ================= MOBILE MENU BACKDROP ================= */}
       <div
-        className={`fixed inset-0 z-[60] bg-black/30 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           menuOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -91,7 +91,7 @@ const HomePage = () => {
 
       {/* ================= MOBILE SIDE MENU ================= */}
       <aside
-        className={`fixed left-0 top-0 z-[70] h-full w-[82%] max-w-sm transform shadow-2xl transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed left-0 top-0 h-full w-[82%] max-w-sm transform shadow-2xl transition-transform duration-300 ease-out md:hidden ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >

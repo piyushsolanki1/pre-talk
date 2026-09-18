@@ -166,10 +166,10 @@ const ChatPage = () => {
                 setConfirmSkip(true);
               }
             }}
-            className={`rounded-xl p-3 text-gray-700 transition ${
+            className={`rounded-xl p-3 text-white transition ${
               confirmSkip
                 ? "bg-red-500 text-white hover:bg-red-600"
-                : "bg-purple-400 hover:bg-purple-500 hover:text-white"
+                : "bg-purple-400 hover:bg-purple-500"
             }`}
           >
             {" "}
