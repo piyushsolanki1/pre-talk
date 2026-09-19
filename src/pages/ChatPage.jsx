@@ -153,7 +153,7 @@ const ChatPage = () => {
       </section>
 
       {/* ================= CHAT CONTROLS ================= */}
-      <div className="bg-white p-1 ">
+      <div className="bg-white p-1 mb-2">
         {/* Message Input */}
         <form
           onSubmit={handleSend}
