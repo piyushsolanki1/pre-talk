@@ -90,6 +90,7 @@ const ChatPage = () => {
         {/* Right */}
         <div className="flex items-center gap-1">
           <button
+          onClick={() => alert("Sign In to use Call functionality.")}
             type="button"
             className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 sm:block"
           >
@@ -97,6 +98,7 @@ const ChatPage = () => {
           </button>
 
           <button
+          onClick={() => alert("Sign In to use Video Call functionality.")}
             type="button"
             className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 sm:block"
           >
@@ -178,6 +180,7 @@ const ChatPage = () => {
 
           {/* Image */}
           <button
+          onClick={() => alert("Sign In to use Image upload functionality.")}
             type="button"
             className="rounded-xl p-3 text-gray-500 transition bg-gray-200 hover:bg-gray-100 hover:text-purple-600"
           >

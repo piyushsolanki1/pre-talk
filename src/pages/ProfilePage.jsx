@@ -1,22 +1,40 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
-import { Edit3, UserRound, Settings, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import {
+  Edit3,
+  UserRound,
+  Settings,
+  LogOut,
+  ArrowLeft,
+} from "lucide-react";
 
 const ProfilePage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
   return (
     <main className="min-h-screen bg-gray-100 px-4 py-8">
       <div className="mx-auto w-full max-w-3xl">
 
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Your Profile
-          </h1>
+        <div className="mb-6 flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => navigate("/homepage")}
+            className="rounded-xl p-2 text-gray-600 transition hover:bg-white hover:text-purple-600"
+            aria-label="Go back"
+          >
+            <ArrowLeft size={22} />
+          </button>
 
-          <p className="mt-1 text-sm text-gray-500">
-            Manage your Pretalk profile
-          </p>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">
+              Your Profile
+            </h1>
+
+            <p className="mt-1 text-sm text-gray-500">
+              Manage your Pretalk profile
+            </p>
+          </div>
         </div>
 
         {/* Profile Card */}
@@ -41,15 +59,14 @@ const ProfilePage = () => {
               </p>
 
               <button
-              onClick={() => navigate("/editprofile")}
                 type="button"
+                onClick={() => navigate("/editprofile")}
                 className="mt-3 inline-flex items-center gap-2 rounded-xl bg-purple-100 px-4 py-2 text-sm font-medium text-purple-700 transition hover:bg-purple-200"
               >
                 <Edit3 size={16} />
                 Edit Profile
               </button>
             </div>
-
           </div>
 
           {/* Divider */}
@@ -91,12 +108,12 @@ const ProfilePage = () => {
               </span>
             </div>
           </div>
-
         </div>
 
         {/* Settings */}
         <div className="mt-5 rounded-2xl border border-gray-200 bg-white shadow-sm">
 
+          {/* Settings Button */}
           <button
             type="button"
             className="flex w-full items-center gap-3 p-5 text-left transition hover:bg-gray-50"
@@ -116,6 +133,7 @@ const ProfilePage = () => {
 
           <div className="border-t border-gray-200" />
 
+          {/* Logout Button */}
           <button
             type="button"
             className="flex w-full items-center gap-3 p-5 text-left text-red-600 transition hover:bg-red-50"
@@ -132,9 +150,7 @@ const ProfilePage = () => {
               </p>
             </div>
           </button>
-
         </div>
-
       </div>
     </main>
   );

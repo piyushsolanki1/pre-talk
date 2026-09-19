@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import countries from "../assets/Data/countries";
+
 import {
   Mars,
   Venus,
@@ -11,10 +12,13 @@ import {
   X,
   Globe2,
   Search,
+  UserRound,
 } from "lucide-react";
 
 const HomePage = () => {
   const navigate = useNavigate();
+
+  // ================= STATES =================
 
   const [showInterests, setShowInterests] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
@@ -24,68 +28,113 @@ const HomePage = () => {
   const [country, setCountry] = useState("All Countries");
   const [countrySearch, setCountrySearch] = useState("");
 
+  // ================= COUNTRY SEARCH =================
+
   const filteredCountries = countries.filter((item) =>
-    item.toLowerCase().includes(countrySearch.toLowerCase()),
+    item.toLowerCase().includes(countrySearch.toLowerCase())
   );
 
   return (
     <main className="min-h-screen w-full bg-white text-black">
       {/* ================= NAVBAR ================= */}
-      <header className="sticky top-0 z-50 border-b bg-white shadow-sm">
-        <nav className="mx-auto max-w-7xl px-4 lg:px-10">
-          {/* Top Navbar */}
-          <div className="flex items-center justify-between py-4">
-            {/* Mobile Menu Button */}
-            <button
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              className="rounded-lg p-2 transition hover:bg-purple-50 md:hidden"
-              aria-label="Open menu"
-            >
-              <Menu size={28} className="text-purple-500" />
-            </button>
 
-            {/* Logo */}
-            <div>
-              <span className="text-2xl font-bold tracking-tight text-purple-500">
-                <button onClick={() => navigate("/")}>Pretalk</button>
-              </span>
-            </div>
+      {/* ================= NAVBAR ================= */}
 
-            {/* Desktop Navigation */}
-            <div className="hidden items-center gap-8 text-md font-semibold text-gray-700 md:flex">
-              <button 
-              onClick={() => navigate("/profile")}
-              className="transition hover:text-[#540edf]">
-                Profile
-              </button>
+<header className="sticky top-0 z-50 border-b bg-white shadow-sm">
+  <nav className="mx-auto max-w-7xl px-4 lg:px-10">
+    <div className="flex items-center justify-between py-4">
 
-              <button 
-              onClick={() => navigate("/friends")}
-              className="transition hover:text-[#540edf]">
-                Friends
-              </button>
+      {/* ================= MOBILE LEFT ================= */}
 
-              <a href="#safety" className="transition hover:text-[#540edf]">
-                Safety
-              </a>
-            </div>
+      <div className="flex items-center gap-2 md:hidden">
+        {/* Menu Button */}
+        <button
+          type="button"
+          onClick={() => setMenuOpen(true)}
+          className="rounded-lg p-2 transition hover:bg-purple-50"
+          aria-label="Open menu"
+        >
+          <Menu size={28} className="text-purple-500" />
+        </button>
+      </div>
 
-            {/* Desktop Sign In */}
-            <button
+      {/* ================= LOGO ================= */}
+
+      <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
+        <button
+          type="button"
+          onClick={() => navigate("/")}
+          className="text-2xl font-bold tracking-tight text-purple-500 transition hover:text-purple-600"
+        >
+          Pretalk
+        </button>
+      </div>
+
+      {/* ================= DESKTOP NAVIGATION ================= */}
+
+      <div className="hidden items-center gap-8 text-md font-semibold text-gray-700 md:flex">
+
+        <button
+          type="button"
+          onClick={() => navigate("/friends")}
+          className="transition hover:text-[#540edf]"
+        >
+          Friends
+        </button>
+
+        <a
+          href="#safety"
+          className="transition hover:text-[#540edf]"
+        >
+          Safety
+        </a>
+      </div>
+
+      {/* ================= RIGHT ACTIONS ================= */}
+
+      <div className="flex items-center gap-2">
+
+        {/* Mobile Profile */}
+
+        <button
+          type="button"
+          onClick={() => navigate("/profile")}
+          className="rounded-full border border-gray-200 p-2 transition hover:border-purple-300 hover:bg-purple-50 md:hidden"
+          aria-label="Profile"
+        >
+          <UserRound size={20} className="text-purple-500" />
+        </button>
+
+        {/* Desktop Actions */}
+
+        <div className="hidden items-center gap-2 md:flex">
+          <button
+            type="button"
             onClick={() => navigate("/login")}
-              type="button"
-              className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium transition hover:border-purple-300 hover:bg-purple-50"
-            >
-              Sign In
-            </button>
-          </div>
-        </nav>
-      </header>
+            className="rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium transition hover:border-purple-300 hover:bg-purple-50"
+          >
+            Sign In
+          </button>
+
+          <button
+            type="button"
+            onClick={() => navigate("/profile")}
+            className="rounded-full border border-gray-200 p-2 transition hover:border-purple-300 hover:bg-purple-50"
+            aria-label="Profile"
+          >
+            <UserRound size={20} className="text-purple-500" />
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</header>
 
       {/* ================= MOBILE MENU BACKDROP ================= */}
+
       <div
-        className={`fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-40 bg-black/30 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           menuOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -94,17 +143,27 @@ const HomePage = () => {
       />
 
       {/* ================= MOBILE SIDE MENU ================= */}
+
       <aside
-        className={`fixed left-0 top-0 h-full w-[82%] max-w-sm transform shadow-2xl transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed left-0 top-0 z-50 h-full w-[82%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out md:hidden ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex h-6 flex-col">
-          {/* Menu Header */}
+        <div className="flex h-full flex-col">
+
+          {/* ================= MENU HEADER ================= */}
+
           <div className="flex items-center justify-between border-b px-6 py-5">
-            <span className="text-2xl font-bold tracking-tight text-purple-600">
+            <button
+              type="button"
+              onClick={() => {
+                setMenuOpen(false);
+                navigate("/");
+              }}
+              className="text-2xl font-bold tracking-tight text-purple-600"
+            >
               Pretalk
-            </span>
+            </button>
 
             <button
               type="button"
@@ -116,24 +175,25 @@ const HomePage = () => {
             </button>
           </div>
 
-          {/* Menu Links */}
+          {/* ================= MENU LINKS ================= */}
+
           <div className="flex flex-1 flex-col px-4 py-6">
             <div className="flex flex-col gap-2">
-              <a
-                href="#discover"
-                onClick={() => setMenuOpen(false)}
-                className="rounded-xl px-4 py-4 text-base font-semibold text-gray-700 transition hover:bg-purple-50 hover:text-[#540edf]"
-              >
-                Discover
-              </a>
 
-              <a
-                href="#friends"
-                onClick={() => setMenuOpen(false)}
-                className="rounded-xl px-4 py-4 text-base font-semibold text-gray-700 transition hover:bg-purple-50 hover:text-[#540edf]"
+              {/* Friends */}
+
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  navigate("/friends");
+                }}
+                className="rounded-xl px-4 py-4 text-left text-base font-semibold text-gray-700 transition hover:bg-purple-50 hover:text-[#540edf]"
               >
                 Friends
-              </a>
+              </button>
+
+              {/* Safety */}
 
               <a
                 href="#safety"
@@ -144,11 +204,15 @@ const HomePage = () => {
               </a>
             </div>
 
-            {/* Mobile Sign In */}
+            {/* ================= MOBILE SIGN IN ================= */}
+
             <div className="mt-auto border-t border-gray-100 pt-6">
               <button
                 type="button"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  setMenuOpen(false);
+                  navigate("/login");
+                }}
                 className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm font-semibold transition hover:border-purple-300 hover:bg-purple-50"
               >
                 Sign In
@@ -158,24 +222,37 @@ const HomePage = () => {
         </div>
       </aside>
 
-      {/* ================= MAIN ================= */}
+      {/* ================= MAIN CONTENT ================= */}
+
       <section className="mx-auto w-full max-w-5xl px-6 py-8 lg:px-10">
-        {/* Description */}
+
+        {/* ================= DESCRIPTION ================= */}
+
         <div className="mx-auto mb-4 text-center text-gray-400">
           Chat with random people worldwide - Be respectful, have fun, and
           follow our community guidelines.
         </div>
 
         <div className="grid grid-cols-1 gap-4">
-          {/* ================= INTEREST CARD ================= */}
+
+          {/* ===================================================== */}
+          {/* INTEREST CARD */}
+          {/* ===================================================== */}
+
           <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-8 shadow-xl">
+
             {/* Background Glow */}
+
             <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
 
             <div className="relative">
+
+              {/* Header */}
+
               <div className="flex items-center justify-between">
-                {/* Title */}
+
                 <div className="flex gap-3">
+
                   <span className="flex h-fit w-fit rounded-xl border-2 border-purple-500 p-2">
                     <ListCheck size={30} className="text-purple-500" />
                   </span>
@@ -191,7 +268,8 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                {/* Open Interest */}
+                {/* Toggle */}
+
                 <button
                   type="button"
                   onClick={() => setShowInterests(!showInterests)}
@@ -208,8 +286,12 @@ const HomePage = () => {
               </div>
 
               {/* Interest Content */}
+
               {showInterests && (
                 <div className="mt-6">
+
+                  {/* Interest Input */}
+
                   <div className="relative w-full">
                     <input
                       type="text"
@@ -225,21 +307,29 @@ const HomePage = () => {
                     </button>
                   </div>
 
+                  {/* Max Wait Time */}
+
                   <div className="mt-8">
-                    <div className="text-lg font-semibold">Max wait time</div>
+                    <div className="text-lg font-semibold">
+                      Max wait time
+                    </div>
 
                     <div className="mt-3 flex flex-wrap gap-3">
-                      {["5 sec", "10 sec", "15 sec", "30 sec", "Unlimited"].map(
-                        (time) => (
-                          <button
-                            key={time}
-                            type="button"
-                            className="rounded-xl bg-white px-4 py-2 text-sm shadow-sm transition hover:-translate-y-0.5 hover:bg-purple-50 hover:shadow-md"
-                          >
-                            {time}
-                          </button>
-                        ),
-                      )}
+                      {[
+                        "5 sec",
+                        "10 sec",
+                        "15 sec",
+                        "30 sec",
+                        "Unlimited",
+                      ].map((time) => (
+                        <button
+                          key={time}
+                          type="button"
+                          className="rounded-xl bg-white px-4 py-2 text-sm shadow-sm transition hover:-translate-y-0.5 hover:bg-purple-50 hover:shadow-md"
+                        >
+                          {time}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -247,15 +337,24 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* ================= GENDER + AGE CARD ================= */}
+          {/* ===================================================== */}
+          {/* GENDER + AGE CARD */}
+          {/* ===================================================== */}
+
           <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-8 shadow-xl">
+
             {/* Background Glow */}
+
             <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
 
             <div className="relative">
+
+              {/* Header */}
+
               <div className="flex items-center justify-between">
-                {/* Title */}
+
                 <div className="flex gap-3">
+
                   <span className="flex h-fit w-fit rounded-xl border-2 border-purple-500 p-2">
                     <div className="flex">
                       <Mars size={28} className="text-purple-500" />
@@ -274,7 +373,8 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                {/* Open Filters */}
+                {/* Toggle */}
+
                 <button
                   type="button"
                   onClick={() => setShowFilters(!showFilters)}
@@ -291,13 +391,19 @@ const HomePage = () => {
               </div>
 
               {/* Filter Content */}
+
               {showFilters && (
                 <div className="mt-8">
+
                   {/* Gender */}
+
                   <div>
-                    <div className="text-lg font-semibold">Gender</div>
+                    <div className="text-lg font-semibold">
+                      Gender
+                    </div>
 
                     <div className="mt-3 flex flex-wrap gap-3">
+
                       <button
                         type="button"
                         className="rounded-xl bg-white px-5 py-3 text-sm shadow-sm transition hover:bg-purple-50"
@@ -322,17 +428,23 @@ const HomePage = () => {
                   </div>
 
                   {/* Age */}
+
                   <div className="mt-8">
-                    <div className="text-lg font-semibold">Age range</div>
+                    <div className="text-lg font-semibold">
+                      Age range
+                    </div>
 
                     <div className="mt-3 flex items-center gap-3">
+
                       <input
                         type="number"
                         placeholder="18"
                         className="w-24 rounded-xl bg-white p-3 text-center outline-none focus:ring-2 focus:ring-purple-300"
                       />
 
-                      <span className="text-gray-500">to</span>
+                      <span className="text-gray-500">
+                        to
+                      </span>
 
                       <input
                         type="number"
@@ -346,21 +458,32 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* ================= COUNTRY CARD ================= */}
+          {/* ===================================================== */}
+          {/* COUNTRY CARD */}
+          {/* ===================================================== */}
+
           <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-8 shadow-xl">
+
             {/* Background Glow */}
+
             <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
 
             <div className="relative">
+
+              {/* Header */}
+
               <div className="flex items-center justify-between">
-                {/* Title */}
+
                 <div className="flex gap-3">
+
                   <span className="flex h-fit w-fit rounded-xl border-2 border-purple-500 p-2">
                     <Globe2 size={30} className="text-purple-500" />
                   </span>
 
                   <div>
-                    <div className="text-xl font-semibold">Country</div>
+                    <div className="text-xl font-semibold">
+                      Country
+                    </div>
 
                     <div className="mt-1 text-sm font-medium text-gray-600">
                       {country === "All Countries"
@@ -370,7 +493,8 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                {/* Open Country */}
+                {/* Toggle */}
+
                 <button
                   type="button"
                   onClick={() => setShowCountry(!showCountry)}
@@ -387,9 +511,12 @@ const HomePage = () => {
               </div>
 
               {/* Country Content */}
+
               {showCountry && (
                 <div className="mt-8">
+
                   {/* Search */}
+
                   <div className="relative w-full">
                     <Search
                       size={18}
@@ -406,8 +533,11 @@ const HomePage = () => {
                   </div>
 
                   {/* Country List */}
+
                   <div className="mt-4 max-h-64 overflow-y-auto">
+
                     {/* All Countries */}
+
                     <button
                       type="button"
                       onClick={() => {
@@ -423,11 +553,15 @@ const HomePage = () => {
                       <span>🌎 All Countries</span>
 
                       {country === "All Countries" && (
-                        <Check size={18} className="text-purple-500" />
+                        <Check
+                          size={18}
+                          className="text-purple-500"
+                        />
                       )}
                     </button>
 
                     {/* Countries */}
+
                     <div className="mt-2 space-y-2">
                       {filteredCountries.length > 0 ? (
                         filteredCountries.map((item) => (
@@ -447,7 +581,10 @@ const HomePage = () => {
                             <span>{item}</span>
 
                             {country === item && (
-                              <Check size={18} className="text-purple-500" />
+                              <Check
+                                size={18}
+                                className="text-purple-500"
+                              />
                             )}
                           </button>
                         ))
@@ -469,18 +606,22 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* ================= START NEW CHAT ================= */}
-          <div className="flex fixed bottom-15 right-0 left-0 justify-center pointer-events-none">
-            <button
-              type="button"
-              onClick={() => navigate("/matching")}
-              className=" pointer-events-auto flex items-center justify-center rounded-2xl bg-purple-300 p-3 text-2xl font-semibold shadow-xl transition hover:bg-purple-400 hover:shadow-2xl hover:shadow-purple-400/50"
-            >
-              Start New Chat
-            </button>
-          </div>
         </div>
       </section>
+
+      {/* ===================================================== */}
+      {/* START NEW CHAT */}
+      {/* ===================================================== */}
+
+      <div className="pointer-events-none fixed bottom-6 left-0 right-0 z-40 flex justify-center">
+        <button
+          type="button"
+          onClick={() => navigate("/matching")}
+          className="pointer-events-auto flex items-center justify-center rounded-2xl bg-purple-300 px-6 py-3 text-2xl font-semibold shadow-xl transition hover:bg-purple-400 hover:shadow-2xl hover:shadow-purple-400/50"
+        >
+          Start New Chat
+        </button>
+      </div>
     </main>
   );
 };

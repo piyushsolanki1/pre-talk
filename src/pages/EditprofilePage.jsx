@@ -86,6 +86,7 @@ const EditprofilePage = () => {
               </span>
 
               <button
+              onClick={ () => alert("Change profile picture functionality not implemented yet.")}
                 type="button"
                 className="absolute bottom-0 right-0 flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-purple-600 text-white shadow-md transition hover:bg-purple-700"
               >

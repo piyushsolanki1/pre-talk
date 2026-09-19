@@ -1,7 +1,10 @@
 import React from "react";
-import { MessageCircle, Search, UserRound } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+import { MessageCircle, Search, UserRound, ArrowLeft } from "lucide-react";
 
 const FriendsPage = () => {
+    const navigate = useNavigate();
   const friends = [
     {
       id: 1,
@@ -26,16 +29,26 @@ const FriendsPage = () => {
       <div className="mx-auto w-full max-w-5xl">
 
         {/* Header */}
-        <div className="mb-8 flex justify-center flex-col items-center gap-2 text-center">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Your Friends
-          </h1>
+        <div className="mb-6 flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => navigate("/homepage")}
+            className="rounded-xl p-2 text-gray-600 transition hover:bg-white hover:text-purple-600"
+            aria-label="Go back"
+          >
+            <ArrowLeft size={22} />
+          </button>
 
-          <p className="mt-1 text-md text-gray-500">
-            People you've connected with on Pretalk
-          </p>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">
+              Your Profile
+            </h1>
+
+            <p className="mt-1 text-sm text-gray-500">
+              Manage your Pretalk profile
+            </p>
+          </div>
         </div>
-
         {/* Search */}
         <div className="mb-6 flex items-center rounded-xl border border-gray-200 bg-white px-4 shadow-sm">
           <Search size={20} className="text-gray-400" />
@@ -48,7 +61,7 @@ const FriendsPage = () => {
         </div>
 
         {/* Friends */}
-        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 w-3xl mx-auto">
+        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 w-full mx-auto">
 
           {friends.map((friend) => (
             <div
