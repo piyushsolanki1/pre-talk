@@ -410,12 +410,6 @@ const SideFeature = ({ menuOpen, setMenuOpen }) => {
 
                     </div>
 
-                    <div className="p-4 text-center">
-                      <p className="text-xs text-gray-500">
-                        Tap the Friends icon to view your connections.
-                      </p>
-                    </div>
-
                   </div>
                 )}
 
