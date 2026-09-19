@@ -13,6 +13,12 @@ import {
   Globe2,
   Search,
   UserRound,
+  Settings,
+  Sun,
+  Crown,
+  Users,
+  MessageSquareTextIcon,
+  Heart,
 } from "lucide-react";
 
 const HomePage = () => {
@@ -28,108 +34,109 @@ const HomePage = () => {
   const [country, setCountry] = useState("All Countries");
   const [countrySearch, setCountrySearch] = useState("");
 
+  // Friends / Requests panel
+  const [showFriends, setShowFriends] = useState(false);
+  const [activeFriendTab, setActiveFriendTab] = useState("friends");
+
+  // ================= FRIEND DATA =================
+  // These will later come from your backend/database.
+
+  const [friends] = useState([]);
+
+  const [friendRequests] = useState([]);
+
   // ================= COUNTRY SEARCH =================
 
   const filteredCountries = countries.filter((item) =>
-    item.toLowerCase().includes(countrySearch.toLowerCase())
+    item.toLowerCase().includes(countrySearch.toLowerCase()),
   );
 
   return (
     <main className="min-h-screen w-full bg-white text-black">
       {/* ================= NAVBAR ================= */}
 
-      {/* ================= NAVBAR ================= */}
+      <header className="sticky top-0 z-50 border-b bg-white shadow-sm">
+        <nav className="mx-auto max-w-7xl px-4 lg:px-10">
+          <div className="flex items-center justify-between py-4">
+            {/* ================= MOBILE LEFT ================= */}
 
-<header className="sticky top-0 z-50 border-b bg-white shadow-sm">
-  <nav className="mx-auto max-w-7xl px-4 lg:px-10">
-    <div className="flex items-center justify-between py-4">
+            <div className="flex items-center gap-2 md:hidden">
+              <button
+                type="button"
+                onClick={() => setMenuOpen(true)}
+                className="rounded-lg p-2 transition hover:bg-purple-50"
+                aria-label="Open menu"
+              >
+                <Menu size={28} className="text-purple-500" />
+              </button>
+            </div>
 
-      {/* ================= MOBILE LEFT ================= */}
+            {/* ================= LOGO ================= */}
 
-      <div className="flex items-center gap-2 md:hidden">
-        {/* Menu Button */}
-        <button
-          type="button"
-          onClick={() => setMenuOpen(true)}
-          className="rounded-lg p-2 transition hover:bg-purple-50"
-          aria-label="Open menu"
-        >
-          <Menu size={28} className="text-purple-500" />
-        </button>
-      </div>
+            <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
+              <button
+                type="button"
+                onClick={() => navigate("/")}
+                className="text-2xl font-bold tracking-tight text-purple-500 transition hover:text-purple-600"
+              >
+                Pretalk
+              </button>
+            </div>
 
-      {/* ================= LOGO ================= */}
+            {/* ================= DESKTOP NAVIGATION ================= */}
 
-      <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
-        <button
-          type="button"
-          onClick={() => navigate("/")}
-          className="text-2xl font-bold tracking-tight text-purple-500 transition hover:text-purple-600"
-        >
-          Pretalk
-        </button>
-      </div>
+            <div className="hidden items-center gap-8 text-md font-semibold text-gray-700 md:flex">
+              <button
+                type="button"
+                onClick={() => navigate("/friends")}
+                className="transition hover:text-[#540edf]"
+              >
+                Friends
+              </button>
 
-      {/* ================= DESKTOP NAVIGATION ================= */}
+              <a href="#safety" className="transition hover:text-[#540edf]">
+                Safety
+              </a>
+            </div>
 
-      <div className="hidden items-center gap-8 text-md font-semibold text-gray-700 md:flex">
+            {/* ================= RIGHT ACTIONS ================= */}
 
-        <button
-          type="button"
-          onClick={() => navigate("/friends")}
-          className="transition hover:text-[#540edf]"
-        >
-          Friends
-        </button>
+            <div className="flex items-center gap-2">
+              {/* Mobile Profile */}
 
-        <a
-          href="#safety"
-          className="transition hover:text-[#540edf]"
-        >
-          Safety
-        </a>
-      </div>
+              <button
+                type="button"
+                onClick={() => navigate("/profile")}
+                className="rounded-full border border-gray-200 p-2 transition hover:border-purple-300 hover:bg-purple-50 md:hidden"
+                aria-label="Profile"
+              >
+                <UserRound size={20} className="text-purple-500" />
+              </button>
 
-      {/* ================= RIGHT ACTIONS ================= */}
+              {/* Desktop Actions */}
 
-      <div className="flex items-center gap-2">
+              <div className="hidden items-center gap-2 md:flex">
+                <button
+                  type="button"
+                  onClick={() => navigate("/login")}
+                  className="rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium transition hover:border-purple-300 hover:bg-purple-50"
+                >
+                  Sign In
+                </button>
 
-        {/* Mobile Profile */}
-
-        <button
-          type="button"
-          onClick={() => navigate("/profile")}
-          className="rounded-full border border-gray-200 p-2 transition hover:border-purple-300 hover:bg-purple-50 md:hidden"
-          aria-label="Profile"
-        >
-          <UserRound size={20} className="text-purple-500" />
-        </button>
-
-        {/* Desktop Actions */}
-
-        <div className="hidden items-center gap-2 md:flex">
-          <button
-            type="button"
-            onClick={() => navigate("/login")}
-            className="rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium transition hover:border-purple-300 hover:bg-purple-50"
-          >
-            Sign In
-          </button>
-
-          <button
-            type="button"
-            onClick={() => navigate("/profile")}
-            className="rounded-full border border-gray-200 p-2 transition hover:border-purple-300 hover:bg-purple-50"
-            aria-label="Profile"
-          >
-            <UserRound size={20} className="text-purple-500" />
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </nav>
-</header>
+                <button
+                  type="button"
+                  onClick={() => navigate("/profile")}
+                  className="rounded-full border border-gray-200 p-2 transition hover:border-purple-300 hover:bg-purple-50"
+                  aria-label="Profile"
+                >
+                  <UserRound size={20} className="text-purple-500" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
 
       {/* ================= MOBILE MENU BACKDROP ================= */}
 
@@ -150,7 +157,6 @@ const HomePage = () => {
         }`}
       >
         <div className="flex h-full flex-col">
-
           {/* ================= MENU HEADER ================= */}
 
           <div className="flex items-center justify-between border-b px-6 py-5">
@@ -160,9 +166,9 @@ const HomePage = () => {
                 setMenuOpen(false);
                 navigate("/");
               }}
-              className="text-2xl font-bold tracking-tight text-purple-600"
+              className="ml-12 text-4xl font-bold tracking-tight text-purple-600"
             >
-              Pretalk
+              PreTalk
             </button>
 
             <button
@@ -175,33 +181,309 @@ const HomePage = () => {
             </button>
           </div>
 
-          {/* ================= MENU LINKS ================= */}
+          {/* ================= MENU CONTENT ================= */}
 
           <div className="flex flex-1 flex-col px-4 py-6">
-            <div className="flex flex-col gap-2">
+            {/* ================= PROFILE / SETTINGS BAR ================= */}
 
-              {/* Friends */}
+            <div className="flex w-full items-center justify-between rounded-xl bg-white p-2 shadow-2xl">
+              {/* Profile */}
 
-              <button
-                type="button"
-                onClick={() => {
-                  setMenuOpen(false);
-                  navigate("/friends");
-                }}
-                className="rounded-xl px-4 py-4 text-left text-base font-semibold text-gray-700 transition hover:bg-purple-50 hover:text-[#540edf]"
-              >
-                Friends
-              </button>
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-purple-400">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    navigate("/profile");
+                  }}
+                  aria-label="Profile"
+                >
+                  <UserRound size={24} className="text-purple-600" />
+                </button>
+              </div>
 
-              {/* Safety */}
+              {/* Settings / Theme */}
 
-              <a
-                href="#safety"
-                onClick={() => setMenuOpen(false)}
-                className="rounded-xl px-4 py-4 text-base font-semibold text-gray-700 transition hover:bg-purple-50 hover:text-[#540edf]"
-              >
-                Safety
-              </a>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    // Settings can be added later
+                  }}
+                  className="rounded-md border p-1 transition hover:bg-purple-50"
+                  aria-label="Settings"
+                >
+                  <Settings size={20} className="text-purple-500" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    // Theme toggle can be added later
+                  }}
+                  className="rounded-md border p-1 transition hover:bg-purple-50"
+                  aria-label="Theme"
+                >
+                  <Sun size={20} className="text-purple-500" />
+                </button>
+              </div>
+            </div>
+
+            {/* ================= SIDE MENU ICONS + CONTENT ================= */}
+
+            <div className="mt-6 flex justify-around gap-4">
+              {/* ================= ICON COLUMN ================= */}
+
+              <div className="flex h-fit flex-col gap-6">
+                {/* Premium */}
+
+                <button
+                  type="button"
+                  aria-label="Premium"
+                  className="w-fit rounded-2xl bg-purple-100 p-2 transition focus:bg-purple-200 hover:bg-purple-200"
+                >
+                  <Crown size={32} className="text-yellow-500" />
+                </button>
+
+                {/* FRIENDS / REQUESTS */}
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowFriends(!showFriends);
+
+                    if (!showFriends) {
+                      setActiveFriendTab("friends");
+                    }
+                  }}
+                  aria-label="Friends and requests"
+                  className={`w-fit rounded-2xl p-2 transition ${
+                    showFriends
+                      ? "bg-purple-300"
+                      : "bg-purple-100 hover:bg-purple-200"
+                  }`}
+                >
+                  <Users size={32} className="text-purple-500" />
+                </button>
+
+                {/* Chats */}
+
+                <button
+                  type="button"
+                  aria-label="Chats"
+                  className="w-fit rounded-2xl bg-purple-100 p-2 transition focus:bg-purple-200 hover:bg-purple-200"
+                >
+                  <MessageSquareTextIcon
+                    size={32}
+                    className="text-purple-500"
+                  />
+                </button>
+
+                {/* Saved / Favorites */}
+
+                <button
+                  type="button"
+                  aria-label="Saved"
+                  className="w-fit rounded-2xl bg-purple-100 p-2 transition focus:bg-purple-200 hover:bg-purple-200"
+                >
+                  <Heart size={32} className="text-purple-500" />
+                </button>
+              </div>
+
+              {/* ================= RIGHT SIDE CONTENT ================= */}
+
+              <div className="w-full">
+                {/* ================= START NEW CHAT ================= */}
+
+                <div className="flex w-full justify-center rounded-2xl border bg-purple-400">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMenuOpen(false);
+                      navigate("/matching");
+                    }}
+                    className="w-full p-2 text-2xl font-medium transition hover:text-white"
+                  >
+                    Start New Chat
+                  </button>
+                </div>
+
+\                {/* FRIENDS + REQUESTS PANEL */}
+
+                {showFriends && (
+                  <div className="mt-4 overflow-hidden rounded-xl border border-purple-300 bg-purple-100">
+                
+
+                    {/* ================= TABS ================= */}
+
+                    <div className="flex border-b border-purple-300">
+                      <button
+                        type="button"
+                        onClick={() => setActiveFriendTab("friends")}
+                        className={`w-1/2 rounded-t-xl py-2 text-sm font-semibold transition ${
+                          activeFriendTab === "friends"
+                            ? "bg-purple-200 text-purple-700"
+                            : "text-gray-500 hover:bg-purple-100"
+                        }`}
+                      >
+                        Friends
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setActiveFriendTab("requests")}
+                        className={`w-1/2 rounded-t-xl py-2 text-sm font-semibold transition ${
+                          activeFriendTab === "requests"
+                            ? "bg-purple-200 text-purple-700"
+                            : "text-gray-500 hover:bg-purple-100"
+                        }`}
+                      >
+                        Requests
+                        {friendRequests.length > 0 && (
+                          <span className="ml-2 rounded-full bg-purple-500 px-2 py-0.5 text-xs text-white">
+                            {friendRequests.length}
+                          </span>
+                        )}
+                      </button>
+                    </div>
+
+                    {/* ================= FRIENDS ================= */}
+
+                    {activeFriendTab === "friends" && (
+                      <div className="max-h-52 overflow-y-auto p-3">
+                        {friends.length === 0 ? (
+                          <div className="rounded-lg bg-white p-4 text-center">
+                            <Users
+                              size={28}
+                              className="mx-auto mb-2 text-purple-400"
+                            />
+
+                            <p className="text-sm font-semibold text-gray-700">
+                              No friends yet
+                            </p>
+
+                            <p className="mt-1 text-xs text-gray-500">
+                              People you become friends with will appear here.
+                            </p>
+                          </div>
+                        ) : (
+                          friends.map((friend) => (
+                            <div
+                              key={friend.id}
+                              className="mb-2 flex items-center justify-between rounded-lg bg-white p-3"
+                            >
+                              <div className="flex items-center gap-3">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100">
+                                  <UserRound
+                                    size={20}
+                                    className="text-purple-500"
+                                  />
+                                </div>
+
+                                <div>
+                                  <p className="text-sm font-semibold text-gray-800">
+                                    {friend.username}
+                                  </p>
+
+                                  <p className="text-xs text-gray-400">
+                                    {friend.online ? "Online" : "Offline"}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    )}
+
+                    {/* ================= REQUESTS ================= */}
+
+                    {activeFriendTab === "requests" && (
+                      <div className="max-h-52 overflow-y-auto p-3">
+                        {friendRequests.length === 0 ? (
+                          <div className="rounded-lg bg-white p-4 text-center">
+                            <Users
+                              size={28}
+                              className="mx-auto mb-2 text-purple-400"
+                            />
+
+                            <p className="text-sm font-semibold text-gray-700">
+                              No requests
+                            </p>
+
+                            <p className="mt-1 text-xs text-gray-500">
+                              New friend requests will appear here.
+                            </p>
+                          </div>
+                        ) : (
+                          friendRequests.map((request) => (
+                            <div
+                              key={request.id}
+                              className="mb-2 flex items-center justify-between rounded-lg bg-white p-3"
+                            >
+                              <div className="flex items-center gap-3">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100">
+                                  <UserRound
+                                    size={20}
+                                    className="text-purple-500"
+                                  />
+                                </div>
+
+                                <p className="text-sm font-semibold text-gray-800">
+                                  {request.username}
+                                </p>
+                              </div>
+
+                              <button
+                                type="button"
+                                className="rounded-lg bg-purple-500 px-3 py-2 text-xs font-semibold text-white transition hover:bg-purple-600"
+                              >
+                                Accept
+                              </button>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* ================= DEFAULT SIDE CARD ================= */}
+
+                {!showFriends && (
+                  <div className="mt-4 h-full rounded-xl border border-purple-300 bg-purple-100">
+                    <div className="flex justify-around rounded-2xl border-b border-purple-300">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowFriends(true);
+                          setActiveFriendTab("friends");
+                        }}
+                        className="w-full rounded-2xl p-2 text-sm font-medium text-purple-600 transition hover:bg-purple-200"
+                      >
+                        Friends
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowFriends(true);
+                          setActiveFriendTab("requests");
+                        }}
+                        className="w-full rounded-2xl p-2 text-sm font-medium text-gray-600 transition hover:bg-purple-200"
+                      >
+                        Requests
+                      </button>
+                    </div>
+
+                    <div className="p-4 text-center">
+                      <p className="text-xs text-gray-500">
+                        Tap the Friends icon to view your connections.
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* ================= MOBILE SIGN IN ================= */}
@@ -225,7 +507,6 @@ const HomePage = () => {
       {/* ================= MAIN CONTENT ================= */}
 
       <section className="mx-auto w-full max-w-5xl px-6 py-8 lg:px-10">
-
         {/* ================= DESCRIPTION ================= */}
 
         <div className="mx-auto mb-4 text-center text-gray-400">
@@ -234,25 +515,18 @@ const HomePage = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-4">
-
           {/* ===================================================== */}
           {/* INTEREST CARD */}
           {/* ===================================================== */}
 
           <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-8 shadow-xl">
-
-            {/* Background Glow */}
-
             <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
 
             <div className="relative">
-
               {/* Header */}
 
               <div className="flex items-center justify-between">
-
                 <div className="flex gap-3">
-
                   <span className="flex h-fit w-fit rounded-xl border-2 border-purple-500 p-2">
                     <ListCheck size={30} className="text-purple-500" />
                   </span>
@@ -289,7 +563,6 @@ const HomePage = () => {
 
               {showInterests && (
                 <div className="mt-6">
-
                   {/* Interest Input */}
 
                   <div className="relative w-full">
@@ -310,9 +583,7 @@ const HomePage = () => {
                   {/* Max Wait Time */}
 
                   <div className="mt-8">
-                    <div className="text-lg font-semibold">
-                      Max wait time
-                    </div>
+                    <div className="text-lg font-semibold">Max wait time</div>
 
                     <div className="mt-3 flex flex-wrap gap-3">
                       {[
@@ -342,19 +613,13 @@ const HomePage = () => {
           {/* ===================================================== */}
 
           <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-8 shadow-xl">
-
-            {/* Background Glow */}
-
             <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
 
             <div className="relative">
-
               {/* Header */}
 
               <div className="flex items-center justify-between">
-
                 <div className="flex gap-3">
-
                   <span className="flex h-fit w-fit rounded-xl border-2 border-purple-500 p-2">
                     <div className="flex">
                       <Mars size={28} className="text-purple-500" />
@@ -394,16 +659,12 @@ const HomePage = () => {
 
               {showFilters && (
                 <div className="mt-8">
-
                   {/* Gender */}
 
                   <div>
-                    <div className="text-lg font-semibold">
-                      Gender
-                    </div>
+                    <div className="text-lg font-semibold">Gender</div>
 
                     <div className="mt-3 flex flex-wrap gap-3">
-
                       <button
                         type="button"
                         className="rounded-xl bg-white px-5 py-3 text-sm shadow-sm transition hover:bg-purple-50"
@@ -430,21 +691,16 @@ const HomePage = () => {
                   {/* Age */}
 
                   <div className="mt-8">
-                    <div className="text-lg font-semibold">
-                      Age range
-                    </div>
+                    <div className="text-lg font-semibold">Age range</div>
 
                     <div className="mt-3 flex items-center gap-3">
-
                       <input
                         type="number"
                         placeholder="18"
                         className="w-24 rounded-xl bg-white p-3 text-center outline-none focus:ring-2 focus:ring-purple-300"
                       />
 
-                      <span className="text-gray-500">
-                        to
-                      </span>
+                      <span className="text-gray-500">to</span>
 
                       <input
                         type="number"
@@ -463,27 +719,19 @@ const HomePage = () => {
           {/* ===================================================== */}
 
           <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-8 shadow-xl">
-
-            {/* Background Glow */}
-
             <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
 
             <div className="relative">
-
               {/* Header */}
 
               <div className="flex items-center justify-between">
-
                 <div className="flex gap-3">
-
                   <span className="flex h-fit w-fit rounded-xl border-2 border-purple-500 p-2">
                     <Globe2 size={30} className="text-purple-500" />
                   </span>
 
                   <div>
-                    <div className="text-xl font-semibold">
-                      Country
-                    </div>
+                    <div className="text-xl font-semibold">Country</div>
 
                     <div className="mt-1 text-sm font-medium text-gray-600">
                       {country === "All Countries"
@@ -514,7 +762,6 @@ const HomePage = () => {
 
               {showCountry && (
                 <div className="mt-8">
-
                   {/* Search */}
 
                   <div className="relative w-full">
@@ -535,7 +782,6 @@ const HomePage = () => {
                   {/* Country List */}
 
                   <div className="mt-4 max-h-64 overflow-y-auto">
-
                     {/* All Countries */}
 
                     <button
@@ -553,10 +799,7 @@ const HomePage = () => {
                       <span>🌎 All Countries</span>
 
                       {country === "All Countries" && (
-                        <Check
-                          size={18}
-                          className="text-purple-500"
-                        />
+                        <Check size={18} className="text-purple-500" />
                       )}
                     </button>
 
@@ -581,10 +824,7 @@ const HomePage = () => {
                             <span>{item}</span>
 
                             {country === item && (
-                              <Check
-                                size={18}
-                                className="text-purple-500"
-                              />
+                              <Check size={18} className="text-purple-500" />
                             )}
                           </button>
                         ))
@@ -605,7 +845,6 @@ const HomePage = () => {
               )}
             </div>
           </div>
-
         </div>
       </section>
 
