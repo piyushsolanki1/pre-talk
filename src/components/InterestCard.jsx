@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { ListCheck, ArrowDown, Check } from "lucide-react";
+import{
+ListCheck,
+ArrowDown,
+Check
+} from "lucide-react"
 
-const InterestCard = () => {
-  const [showInterests, setShowInterests] = useState(false);
+const interestCard = () => {
+ const [showInterests, setShowInterests] = useState(false);
 
   return (
     <div>
@@ -92,4 +96,5 @@ const InterestCard = () => {
   );
 };
 
-export default InterestCard;
+
+export default interestCard
