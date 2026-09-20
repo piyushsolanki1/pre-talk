@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { MessageCircle, Search, UserRound, ArrowLeft } from "lucide-react";
