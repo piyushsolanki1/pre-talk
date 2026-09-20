@@ -5,7 +5,7 @@ ArrowDown,
 Check
 } from "lucide-react"
 
-const interestCard = () => {
+const InterestCard = () => {
  const [showInterests, setShowInterests] = useState(false);
 
   return (
@@ -97,4 +97,4 @@ const interestCard = () => {
 };
 
 
-export default interestCard
+export default InterestCard

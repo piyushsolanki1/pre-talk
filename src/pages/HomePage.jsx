@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SideFeature from "../components/sideFeature";
 import GenderCard from "../components/GenderCard";
-import InterestCard from "../components/interestCard";
+import InterestCard from "../components/InterestCard";
 import CountryCard from "../components/CountryCard";
 import DekstopSidefeatures from "../components/DekstopSidefeatures";
 
