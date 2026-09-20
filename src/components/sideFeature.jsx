@@ -102,7 +102,7 @@ const SideFeature = ({ menuOpen, setMenuOpen }) => {
                   onClick={() => {
                     // Settings can be added later
                   }}
-                  className="rounded-md border p-1 transition hover:bg-purple-50"
+                  className="rounded-md border p-1 transition hover:bg-purple-50 border-purple-400"
                   aria-label="Settings"
                 >
                   <Settings
@@ -116,7 +116,7 @@ const SideFeature = ({ menuOpen, setMenuOpen }) => {
                   onClick={() => {
                     // Theme toggle can be added later
                   }}
-                  className="rounded-md border p-1 transition hover:bg-purple-50"
+                  className="rounded-md border p-1 transition hover:bg-purple-50 border-purple-400"
                   aria-label="Theme"
                 >
                   <Sun
@@ -205,7 +205,7 @@ const SideFeature = ({ menuOpen, setMenuOpen }) => {
 
                 {/* ================= START NEW CHAT ================= */}
 
-                <div className="flex w-full justify-center rounded-2xl border bg-purple-400">
+                <div className="flex w-full justify-center rounded-2xl bg-purple-400">
                   <button
                     type="button"
                     onClick={() => {
@@ -426,7 +426,7 @@ const SideFeature = ({ menuOpen, setMenuOpen }) => {
                   setMenuOpen(false);
                   navigate("/login");
                 }}
-                className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm font-semibold transition hover:border-purple-300 hover:bg-purple-50"
+                className="bg-purple-500 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm font-semibold transition hover:border-purple-300 hover:bg-purple-50"
               >
                 Sign In
               </button>
