@@ -22,9 +22,9 @@ const YourinterestCard = () => {
           <div className="flex items-center justify-between">
             <div className="flex gap-3">
               <span className="flex h-fit w-fit rounded-xl border-2 border-purple-500 p-2">
-                <ListCheck size={30} className="text-purple-500" />
+                <ListCheck size={28} className="text-purple-500" />
               </span>
-              <div className="flex">
+              <div className="flex gap-10">
                 <div>
                     <div className="text-xl font-semibold">Type your interests</div>
 

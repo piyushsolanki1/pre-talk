@@ -2,7 +2,7 @@ import { useState } from "react"
 import{Mars,
   Venus,
   ArrowDown,
-  Crown
+  Crown,
 } from "lucide-react"
 
 const GenderCard = () => {

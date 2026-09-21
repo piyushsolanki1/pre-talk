@@ -13,6 +13,8 @@ import {
 const ChatPage = () => {
   const navigate = useNavigate();
 
+  const fileInputRef = useRef(null);
+
   const [message, setMessage] = useState("");
   const [confirmSkip, setConfirmSkip] = useState(false);
 
@@ -206,11 +208,25 @@ const ChatPage = () => {
           {/* Image */}
           <button
             type="button"
-            onClick={() => alert("Sign In to use Image upload functionality.")}
+            onClick={() => fileInputRef.current?.click()}
             className="shrink-0 rounded-xl bg-gray-100 p-3 text-gray-500 transition hover:bg-purple-50 hover:text-purple-600 active:scale-95"
             aria-label="Upload image"
           >
             <Image size={21} />
+
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              className=" hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+
+                if (file) {
+                  console.log("Selected image:", file);
+                }
+              }}
+            />
           </button>
 
           {/* Input */}
