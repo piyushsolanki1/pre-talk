@@ -3,7 +3,8 @@ import {useState} from "react";
 import{
     ListCheck,
     ArrowDown,
-    Check
+    Check,
+    Crown
 } from "lucide-react"
 
 const YourinterestCard = () => {
@@ -23,11 +24,16 @@ const YourinterestCard = () => {
               <span className="flex h-fit w-fit rounded-xl border-2 border-purple-500 p-2">
                 <ListCheck size={30} className="text-purple-500" />
               </span>
-              <div>
-                <div className="text-xl font-semibold">Type your interests</div>
+              <div className="flex">
+                <div>
+                    <div className="text-xl font-semibold">Type your interests</div>
 
                 <div className="mt-1 text-sm font-medium text-gray-600">
                   Type what you like
+                </div>
+                </div>
+                <div>
+                    <Crown  className="text-yellow-500"/>
                 </div>
               </div>
             </div>
