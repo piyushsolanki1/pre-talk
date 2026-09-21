@@ -6,6 +6,7 @@ import GenderCard from "../components/GenderCard";
 // import InterestCard from "../components/InterestCard";
 import CountryCard from "../components/CountryCard";
 import DekstopSidefeatures from "../components/DekstopSidefeatures";
+import YourinterestCard from "../components/YourinterestCard";
 
 import { Settings, UserRound } from "lucide-react";
 
@@ -112,7 +113,7 @@ const HomePage = () => {
             <div className="grid w-full max-w-3xl grid-cols-1 gap-5">
 
               {/* INTEREST CARD */}
-
+<YourinterestCard />
               {/* <InterestCard /> */}
 
               {/* GENDER + AGE CARD */}

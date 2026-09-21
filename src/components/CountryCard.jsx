@@ -22,7 +22,7 @@ const CountryCard = () => {
 
   return (
     <div>
-      <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-12 shadow-xl">
+      <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-8 shadow-xl">
             <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
 
             <div className="relative">
