@@ -1,7 +1,8 @@
 import { useState } from "react"
 import{Mars,
   Venus,
-  ArrowDown
+  ArrowDown,
+  Crown
 } from "lucide-react"
 
 const GenderCard = () => {
@@ -11,7 +12,7 @@ const GenderCard = () => {
 
   return (
     <div>
-      <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-4 shadow-xl">
+      <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-12 shadow-xl">
             <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
 
             <div className="relative">
@@ -26,13 +27,18 @@ const GenderCard = () => {
                     </div>
                   </span>
 
-                  <div>
-                    <div className="text-xl font-semibold">
+                  <div className="flex">
+                    <div>
+                        <div className="text-xl font-semibold">
                       Gender and age filter
                     </div>
 
                     <div className="mt-1 text-sm font-medium text-gray-600">
                       Find people matching your preferences
+                    </div>
+                    </div>
+                    <div>
+                        <Crown className="text-yellow-500"/>
                     </div>
                   </div>
                 </div>

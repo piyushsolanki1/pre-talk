@@ -5,6 +5,7 @@ import {
   ArrowDown,
   Globe2,
   Search,
+  Crown
 } from "lucide-react";
 
 const CountryCard = () => {
@@ -21,7 +22,7 @@ const CountryCard = () => {
 
   return (
     <div>
-      <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-4 shadow-xl">
+      <div className="relative overflow-hidden rounded-2xl bg-purple-100 p-12 shadow-xl">
             <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl" />
 
             <div className="relative">
@@ -33,13 +34,18 @@ const CountryCard = () => {
                     <Globe2 size={30} className="text-purple-500" />
                   </span>
 
-                  <div>
-                    <div className="text-xl font-semibold">Country</div>
+                  <div className='flex'>
+                    <div>
+                        <div className="text-xl font-semibold">Country</div>
 
                     <div className="mt-1 text-sm font-medium text-gray-600">
                       {country === "All Countries"
                         ? "Meet people from anywhere"
                         : `Looking for people from ${country}`}
+                    </div>
+                    </div>
+                    <div>
+                        <Crown className='text-yellow-500'/>
                     </div>
                   </div>
                 </div>

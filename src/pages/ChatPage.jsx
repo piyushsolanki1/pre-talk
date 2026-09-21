@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -14,6 +14,10 @@ const ChatPage = () => {
   const navigate = useNavigate();
 
   const [message, setMessage] = useState("");
+  const [confirmSkip, setConfirmSkip] = useState(false);
+
+  // Reference to the bottom of the chat
+  const messagesEndRef = useRef(null);
 
   // Temporary messages for UI development
   const [messages, setMessages] = useState([
@@ -37,6 +41,13 @@ const ChatPage = () => {
     },
   ]);
 
+  // Automatically scroll to the newest message
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [messages]);
+
   const handleSend = (e) => {
     e.preventDefault();
 
@@ -56,89 +67,123 @@ const ChatPage = () => {
     setMessage("");
   };
 
-  const [confirmSkip, setConfirmSkip] = useState(false);
+  const handleSkip = () => {
+    if (confirmSkip) {
+      navigate("/homepage");
+    } else {
+      setConfirmSkip(true);
+    }
+  };
+
   return (
-    <main className="flex h-screen w-full flex-col bg-gray-50">
+    <main className="flex h-[100dvh] w-full flex-col overflow-hidden bg-gray-50">
+
       {/* ================= HEADER ================= */}
-      <header className="flex items-center justify-between border-b bg-white px-4 py-4 shadow-sm ">
-        {/* Left */}
-       <div className="w-6xl mx-auto flex justify-between"> 
-       <div className="flex items-center gap-3 ">
-          <button
-            type="button"
-            onClick={() => navigate("/homepage")}
-            className="rounded-xl p-2 transition hover:bg-purple-50"
-          >
-            <ArrowLeft size={22} className="text-gray-700" />
-          </button>
+      <header className="shrink-0 border-b border-gray-200 bg-white shadow-sm">
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-3 sm:px-4">
 
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100">
-            <UserRound size={20} className="text-purple-600" />
-          </div>
+          {/* Left */}
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
 
-          <div>
-            <h2 className="text-sm font-semibold text-gray-900">Stranger</h2>
+            <button
+              type="button"
+              onClick={() => navigate("/homepage")}
+              className="shrink-0 rounded-xl p-2 transition hover:bg-purple-50 active:scale-95"
+              aria-label="Back"
+            >
+              <ArrowLeft size={22} className="text-gray-700" />
+            </button>
 
-            <div className="flex items-center gap-1.5">
-              <span className="h-2 w-2 rounded-full bg-green-500" />
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-purple-100 sm:h-10 sm:w-10">
+              <UserRound
+                size={19}
+                className="text-purple-600"
+              />
+            </div>
 
-              <span className="text-xs text-gray-500">Online</span>
+            <div className="min-w-0">
+              <h2 className="truncate text-sm font-semibold text-gray-900">
+                Stranger
+              </h2>
+
+              <div className="flex items-center gap-1.5">
+                <span className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
+
+                <span className="text-xs text-gray-500">
+                  Online
+                </span>
+              </div>
             </div>
           </div>
+
+          {/* Right */}
+          <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
+
+            <button
+              type="button"
+              onClick={() =>
+                alert("Sign In to use Call functionality.")
+              }
+              className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 active:scale-95"
+              aria-label="Voice call"
+            >
+              <Phone size={19} />
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                alert("Sign In to use Video Call functionality.")
+              }
+              className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 active:scale-95"
+              aria-label="Video call"
+            >
+              <Video size={20} />
+            </button>
+
+            <button
+              type="button"
+              className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 active:scale-95"
+              aria-label="More options"
+            >
+              <MoreVertical size={20} />
+            </button>
+
+          </div>
         </div>
-
-        {/* Right */}
-        <div className="flex items-center gap-1">
-          <button
-          onClick={() => alert("Sign In to use Call functionality.")}
-            type="button"
-            className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 sm:block"
-          >
-            <Phone size={19} />
-          </button>
-
-          <button
-          onClick={() => alert("Sign In to use Video Call functionality.")}
-            type="button"
-            className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 sm:block"
-          >
-            <Video size={20} />
-          </button>
-
-          <button
-            type="button"
-            className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100"
-          >
-            <MoreVertical size={20} />
-          </button>
-        </div>
-       </div>
       </header>
 
       {/* ================= CHAT AREA ================= */}
-      <section className="flex-1 overflow-y-auto px-4 py-6">
-        <div className="mx-auto flex max-w-3xl flex-col gap-4">
+      <section className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-5 sm:px-4 sm:py-6">
+
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
+
           {/* Chat Started */}
-          <div className="my-2 text-center">
-            <span className="rounded-full bg-gray-100 px-4 py-2 text-xs text-gray-500">
+          <div className="my-1 text-center sm:my-2">
+            <span className="inline-block rounded-full bg-gray-100 px-4 py-2 text-xs text-gray-500">
               You are now connected 🎉
             </span>
           </div>
 
+          {/* Messages */}
           {messages.map((msg) => (
             <div
               key={msg.id}
               className={`flex ${
-                msg.sender === "me" ? "justify-end" : "justify-start"
+                msg.sender === "me"
+                  ? "justify-end"
+                  : "justify-start"
               }`}
             >
               <div
-                className={`max-w-[75%] sm:max-w-[60%] ${
-                  msg.sender === "me" ? "items-end" : "items-start"
-                } flex flex-col`}
+                className={`flex max-w-[85%] flex-col sm:max-w-[65%] ${
+                  msg.sender === "me"
+                    ? "items-end"
+                    : "items-start"
+                }`}
               >
                 <div
-                  className={`rounded-2xl px-4 py-3 text-sm ${
+                  className={`rounded-2xl px-4 py-3 text-sm leading-5 ${
                     msg.sender === "me"
                       ? "rounded-br-md bg-[#540edf] text-white"
                       : "rounded-bl-md bg-white text-gray-800 shadow-sm"
@@ -146,75 +191,85 @@ const ChatPage = () => {
                 >
                   {msg.text}
                 </div>
+
+                <span className="mt-1 px-1 text-[10px] text-gray-400">
+                  {msg.time}
+                </span>
               </div>
             </div>
           ))}
+
+          {/* Scroll target */}
+          <div ref={messagesEndRef} />
+
         </div>
       </section>
 
       {/* ================= CHAT CONTROLS ================= */}
-      <div className="bg-white p-1 mb-2">
-        {/* Message Input */}
+      <div className="shrink-0 border-t border-gray-200 bg-white pb-[env(safe-area-inset-bottom)]">
+
         <form
           onSubmit={handleSend}
-          className="mx-auto flex max-w-5xl items-center gap-2 px-4 p-2"
+          className="mx-auto flex w-full max-w-5xl items-center gap-2 px-3 py-2 sm:px-4 sm:py-3"
         >
+
+          {/* Skip */}
           <button
             type="button"
-            onClick={() => {
-              if (confirmSkip) {
-                navigate("/homepage");
-              } else {
-                setConfirmSkip(true);
-              }
-            }}
-            className={`rounded-xl p-3 text-white transition ${
+            onClick={handleSkip}
+            className={`shrink-0 rounded-xl px-3 py-3 text-sm font-medium text-white transition active:scale-95 sm:px-4 ${
               confirmSkip
-                ? "bg-red-500 text-white hover:bg-red-600"
+                ? "bg-red-500 hover:bg-red-600"
                 : "bg-purple-400 hover:bg-purple-500"
             }`}
           >
-            {" "}
-            {confirmSkip ? "Confirm" : "Skip"}{" "}
+            {confirmSkip ? "Confirm" : "Skip"}
           </button>
 
           {/* Image */}
           <button
-          onClick={() => alert("Sign In to use Image upload functionality.")}
             type="button"
-            className="rounded-xl p-3 text-gray-500 transition bg-gray-200 hover:bg-gray-100 hover:text-purple-600"
+            onClick={() =>
+              alert("Sign In to use Image upload functionality.")
+            }
+            className="shrink-0 rounded-xl bg-gray-100 p-3 text-gray-500 transition hover:bg-purple-50 hover:text-purple-600 active:scale-95"
+            aria-label="Upload image"
           >
             <Image size={21} />
           </button>
 
           {/* Input */}
-          <div className="flex flex-1 items-center rounded-2xl bg-gray-100 px-4">
+          <div className="flex min-w-0 flex-1 items-center rounded-2xl bg-gray-100 px-4">
+
             <input
               type="text"
               value={message}
               onChange={(e) => {
                 setMessage(e.target.value);
 
-                // Reset Confirm back to Skip when user starts typing
                 if (confirmSkip) {
                   setConfirmSkip(false);
                 }
               }}
               placeholder="Type a message..."
-              className="w-full bg-transparent py-3 text-sm rounded-2xl text-gray-900 outline-none placeholder:text-gray-400"
+              className="min-w-0 w-full bg-transparent py-3 text-sm text-gray-900 outline-none placeholder:text-gray-400"
             />
+
           </div>
 
           {/* Send */}
           <button
             type="submit"
             disabled={!message.trim()}
-            className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-600 text-white transition hover:bg-purple-700 disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-600 text-white transition hover:bg-purple-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Send message"
           >
             <Send size={19} />
           </button>
+
         </form>
       </div>
+
     </main>
   );
 };
