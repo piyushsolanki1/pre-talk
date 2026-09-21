@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import SideFeature from "../components/sideFeature";
 import GenderCard from "../components/GenderCard";
-// import InterestCard from "../components/InterestCard";
 import CountryCard from "../components/CountryCard";
 import DekstopSidefeatures from "../components/DekstopSidefeatures";
 import YourinterestCard from "../components/YourinterestCard";
@@ -60,7 +59,7 @@ const HomePage = () => {
             <div className="ml-auto flex items-center">
               <button
                 type="button"
-                onClick={() => navigate("/profile")}
+                onClick={() => navigate("")}
                 className="rounded-xl bg-purple-50 p-2.5 transition-all duration-200 hover:bg-purple-100 active:scale-95"
                 aria-label="Profile"
               >

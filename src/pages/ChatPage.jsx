@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -76,15 +76,12 @@ const ChatPage = () => {
   };
 
   return (
-    <main className="flex h-[100dvh] w-full flex-col overflow-hidden bg-gray-50">
-
+    <main className="flex h-dvh w-full flex-col overflow-hidden bg-gray-50">
       {/* ================= HEADER ================= */}
       <header className="shrink-0 border-b border-gray-200 bg-white shadow-sm">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-3 sm:px-4">
-
           {/* Left */}
           <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-
             <button
               type="button"
               onClick={() => navigate("/homepage")}
@@ -95,10 +92,7 @@ const ChatPage = () => {
             </button>
 
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-purple-100 sm:h-10 sm:w-10">
-              <UserRound
-                size={19}
-                className="text-purple-600"
-              />
+              <UserRound size={19} className="text-purple-600" />
             </div>
 
             <div className="min-w-0">
@@ -109,21 +103,16 @@ const ChatPage = () => {
               <div className="flex items-center gap-1.5">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
 
-                <span className="text-xs text-gray-500">
-                  Online
-                </span>
+                <span className="text-xs text-gray-500">Online</span>
               </div>
             </div>
           </div>
 
           {/* Right */}
           <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
-
             <button
               type="button"
-              onClick={() =>
-                alert("Sign In to use Call functionality.")
-              }
+              onClick={() => alert("Sign In to use Call functionality.")}
               className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 active:scale-95"
               aria-label="Voice call"
             >
@@ -132,9 +121,7 @@ const ChatPage = () => {
 
             <button
               type="button"
-              onClick={() =>
-                alert("Sign In to use Video Call functionality.")
-              }
+              onClick={() => alert("Sign In to use Video Call functionality.")}
               className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 active:scale-95"
               aria-label="Video call"
             >
@@ -148,16 +135,13 @@ const ChatPage = () => {
             >
               <MoreVertical size={20} />
             </button>
-
           </div>
         </div>
       </header>
 
       {/* ================= CHAT AREA ================= */}
       <section className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-5 sm:px-4 sm:py-6">
-
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
-
           {/* Chat Started */}
           <div className="my-1 text-center sm:my-2">
             <span className="inline-block rounded-full bg-gray-100 px-4 py-2 text-xs text-gray-500">
@@ -170,16 +154,12 @@ const ChatPage = () => {
             <div
               key={msg.id}
               className={`flex ${
-                msg.sender === "me"
-                  ? "justify-end"
-                  : "justify-start"
+                msg.sender === "me" ? "justify-end" : "justify-start"
               }`}
             >
               <div
                 className={`flex max-w-[85%] flex-col sm:max-w-[65%] ${
-                  msg.sender === "me"
-                    ? "items-end"
-                    : "items-start"
+                  msg.sender === "me" ? "items-end" : "items-start"
                 }`}
               >
                 <div
@@ -201,18 +181,15 @@ const ChatPage = () => {
 
           {/* Scroll target */}
           <div ref={messagesEndRef} />
-
         </div>
       </section>
 
       {/* ================= CHAT CONTROLS ================= */}
       <div className="shrink-0 border-t border-gray-200 bg-white pb-[env(safe-area-inset-bottom)]">
-
         <form
           onSubmit={handleSend}
           className="mx-auto flex w-full max-w-5xl items-center gap-2 px-3 py-2 sm:px-4 sm:py-3"
         >
-
           {/* Skip */}
           <button
             type="button"
@@ -229,9 +206,7 @@ const ChatPage = () => {
           {/* Image */}
           <button
             type="button"
-            onClick={() =>
-              alert("Sign In to use Image upload functionality.")
-            }
+            onClick={() => alert("Sign In to use Image upload functionality.")}
             className="shrink-0 rounded-xl bg-gray-100 p-3 text-gray-500 transition hover:bg-purple-50 hover:text-purple-600 active:scale-95"
             aria-label="Upload image"
           >
@@ -240,7 +215,6 @@ const ChatPage = () => {
 
           {/* Input */}
           <div className="flex min-w-0 flex-1 items-center rounded-2xl bg-gray-100 px-4">
-
             <input
               type="text"
               value={message}
@@ -254,7 +228,6 @@ const ChatPage = () => {
               placeholder="Type a message..."
               className="min-w-0 w-full bg-transparent py-3 text-sm text-gray-900 outline-none placeholder:text-gray-400"
             />
-
           </div>
 
           {/* Send */}
@@ -266,10 +239,8 @@ const ChatPage = () => {
           >
             <Send size={19} />
           </button>
-
         </form>
       </div>
-
     </main>
   );
 };

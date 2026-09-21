@@ -21,7 +21,7 @@ const DekstopSidefeatures = () => {
   const [friendRequests] = useState([]);
 
   return (
-    <aside className="hidden w-[330px] shrink-0 lg:block">
+    <aside className="hidden w-82.5 shrink-0 lg:block">
       <div className="sticky top-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
 
         {/* ================= HEADER ================= */}
@@ -262,7 +262,7 @@ const DekstopSidefeatures = () => {
                         No friends yet
                       </p>
 
-                      <p className="mx-auto mt-1 max-w-[200px] text-xs leading-5 text-gray-400">
+                      <p className="mx-auto mt-1 max-w-50 text-xs leading-5 text-gray-400">
                         People you become friends with will appear here.
                       </p>
 
@@ -319,7 +319,7 @@ const DekstopSidefeatures = () => {
                         No requests
                       </p>
 
-                      <p className="mx-auto mt-1 max-w-[200px] text-xs leading-5 text-gray-400">
+                      <p className="mx-auto mt-1 max-w-50 text-xs leading-5 text-gray-400">
                         New friend requests will appear here.
                       </p>
 
