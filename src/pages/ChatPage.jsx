@@ -1,19 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  ArrowLeft,
+  UserPlus,
+  Flag,
   Send,
   Image,
   Phone,
   Video,
   MoreVertical,
   UserRound,
+  Camera,
+  X,
 } from "lucide-react";
 
 const ChatPage = () => {
   const navigate = useNavigate();
 
   const fileInputRef = useRef(null);
+  const cameraInputRef = useRef(null);
 
   const [message, setMessage] = useState("");
   const [confirmSkip, setConfirmSkip] = useState(false);
@@ -50,6 +54,10 @@ const ChatPage = () => {
     });
   }, [messages]);
 
+  const [showMoreOptions, setShowMoreOptions] = useState(false);
+
+  const [showImageOptions, setShowImageOptions] = useState(false);
+
   const handleSend = (e) => {
     e.preventDefault();
 
@@ -80,27 +88,65 @@ const ChatPage = () => {
   return (
     <main className="flex h-dvh w-full flex-col overflow-hidden bg-gray-50">
       {/* ================= HEADER ================= */}
-      <header className="shrink-0 border-b border-gray-200 bg-white shadow-sm">
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-3 sm:px-4">
+      <header className="shrink-0">
+        <div className="mx-auto flex p-5 w-full max-w-6xl items-center justify-between rounded-3xl border border-purple-400  px-3 shadow-2xl sm:px-4">
           {/* Left */}
-          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-            <button
-              type="button"
-              onClick={() => navigate("/homepage")}
-              className="shrink-0 rounded-xl p-2 transition hover:bg-purple-50 active:scale-95"
-              aria-label="Back"
-            >
-              <ArrowLeft size={22} className="text-gray-700" />
-            </button>
-
+          <div className="flex min-w-0 items-center gap-6 sm:gap-6">
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-purple-100 sm:h-10 sm:w-10">
               <UserRound size={19} className="text-purple-600" />
             </div>
 
-            <div className="min-w-0">
-              <h2 className="truncate text-sm font-semibold text-gray-900">
-                Stranger
-              </h2>
+            <div className="">
+              <button
+                onClick={() => setShowMoreOptions((prev) => !prev)}
+                aria-expanded={showMoreOptions}
+              >
+                <h2 className="truncate text-md font-semibold text-gray-900 cursor-pointer">
+                  stranger
+                </h2>
+              </button>
+
+              {showMoreOptions && (
+                <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+                  <div className="w-[90%] max-w-sm rounded-2xl bg-white p-2 shadow-2xl">
+                    <div className="flex items-center justify-end top-0">
+                      <button
+                        type="button"
+                        onClick={() => setShowMoreOptions(false)}
+                        className="w-fit rounded-xl px-4 py-3 text-sm font-medium text-gray-500 transition hover:bg-gray-100"
+                      >
+                        <X size={21} />
+                      </button>
+                    </div>
+
+                    <div className="flex gap-3 mt-3 m-4">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          // Add friend logic here
+                          setShowMoreOptions(false);
+                        }}
+                        className="flex w-full items-center justify-center gap-3 rounded-xl bg-purple-400 px-4 py-3 text-sm font-medium text-white transition hover:bg-purple-500 active:scale-[0.98]"
+                      >
+                        <UserPlus size={18} />
+                        Add Friend
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          // Report logic here
+                          setShowMoreOptions(false);
+                        }}
+                        className="flex w-full items-center justify-center gap-3 rounded-xl bg-purple-400 px-4 py-3 text-sm font-medium text-white transition hover:bg-purple-500 active:scale-[0.98]"
+                      >
+                        <Flag size={18} />
+                        Report
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               <div className="flex items-center gap-1.5">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-green-500" />
@@ -109,12 +155,11 @@ const ChatPage = () => {
               </div>
             </div>
           </div>
-
           {/* Right */}
           <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
             <button
               type="button"
-              onClick={() => alert("Sign In to use Call functionality.")}
+              onClick={() => navigate("/login")}
               className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 active:scale-95"
               aria-label="Voice call"
             >
@@ -123,20 +168,22 @@ const ChatPage = () => {
 
             <button
               type="button"
-              onClick={() => alert("Sign In to use Video Call functionality.")}
+              onClick={() => navigate("/login")}
               className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 active:scale-95"
               aria-label="Video call"
             >
               <Video size={20} />
             </button>
 
-            <button
-              type="button"
-              className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 active:scale-95"
-              aria-label="More options"
-            >
-              <MoreVertical size={20} />
-            </button>
+            <div className="relative">
+              <button
+                type="button"
+                className="rounded-xl p-2.5 text-gray-600 transition hover:bg-purple-100 active:scale-95"
+                aria-label="More options"
+              >
+                <MoreVertical size={20} />
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -153,6 +200,7 @@ const ChatPage = () => {
 
           {/* Messages */}
           {messages.map((msg) => (
+        
             <div
               key={msg.id}
               className={`flex ${
@@ -165,18 +213,17 @@ const ChatPage = () => {
                 }`}
               >
                 <div
-                  className={`rounded-2xl px-4 py-3 text-sm leading-5 ${
+                  className={`rounded-2xl px-4 py-3 text-md leading-5 ${
                     msg.sender === "me"
                       ? "rounded-br-md bg-[#540edf] text-white"
                       : "rounded-bl-md bg-white text-gray-800 shadow-sm"
                   }`}
                 >
                   {msg.text}
+                  <span className="mt-1 px-1 text-[10px] text-gray-400 flex justify-end">
+                    {msg.time}
+                  </span>
                 </div>
-
-                <span className="mt-1 px-1 text-[10px] text-gray-400">
-                  {msg.time}
-                </span>
               </div>
             </div>
           ))}
@@ -206,28 +253,83 @@ const ChatPage = () => {
           </button>
 
           {/* Image */}
-          <button
-            type="button"
-            onClick={() => fileInputRef.current?.click()}
-            className="shrink-0 rounded-xl bg-gray-100 p-3 text-gray-500 transition hover:bg-purple-50 hover:text-purple-600 active:scale-95"
-            aria-label="Upload image"
-          >
-            <Image size={21} />
+          {/* Image Options */}
+          <div className="relative shrink-0">
+            <button
+              type="button"
+              onClick={() => setShowImageOptions((prev) => !prev)}
+              className="rounded-xl bg-gray-100 p-3 text-gray-500 transition hover:bg-purple-50 hover:text-purple-600 active:scale-95"
+              aria-label="Image options"
+              aria-expanded={showImageOptions}
+            >
+              <MoreVertical size={21} />
+            </button>
 
+            {showImageOptions && (
+              <div className="absolute bottom-14 left-0 z-50 w-44 overflow-hidden rounded-xl border border-gray-200 shadow-xl">
+                {/* Gallery */}
+                <div className="p-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      fileInputRef.current?.click();
+                      setShowImageOptions(false);
+                    }}
+                    className="flex w-full items-center gap-3 px-4 py-3 text-sm font-medium text-white transition bg-purple-400 hover:bg-purple-500 rounded-2xl"
+                  >
+                    <Image size={18} />
+                    <span>Gallery</span>
+                  </button>
+                </div>
+
+                {/* Take Picture */}
+                <div className="p-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      cameraInputRef.current?.click();
+                      setShowImageOptions(false);
+                    }}
+                    className="flex w-full items-center gap-3 px-4 py-3 text-sm font-medium text-white transition  bg-purple-400 hover:bg-purple-500 rounded-2xl"
+                  >
+                    <Camera size={18} />
+                    <span>Take Picture</span>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Gallery input */}
             <input
               ref={fileInputRef}
               type="file"
               accept="image/*"
-              className=" hidden"
+              className="hidden"
               onChange={(e) => {
                 const file = e.target.files?.[0];
 
                 if (file) {
-                  console.log("Selected image:", file);
+                  console.log("Gallery image:", file);
                 }
               }}
             />
-          </button>
+
+            {/* Camera input */}
+            <input
+              ref={cameraInputRef}
+              type="file"
+              accept="image/*"
+              capture="environment"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+
+                if (file) {
+                  console.log("Camera image:", file);
+                }
+              }}
+            />
+          </div>
 
           {/* Input */}
           <div className="flex min-w-0 flex-1 items-center rounded-2xl bg-gray-100 px-4">

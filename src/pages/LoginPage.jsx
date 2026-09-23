@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
-
+import{
+X
+} from "lucide-react"
 const LoginPage = () => {
+
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -12,9 +15,17 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
-
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="w-full max-w-md rounded-lg p-8 shadow-md">
+<div className="flex items-center justify-end top-0">
+                      <button
+                        type="button"
+                        onClick={() => navigate (-1)}
+                        className="w-fit rounded-xl px-4 py-3 text-sm font-medium text-gray-500 transition hover:bg-gray-100"
+                      >
+                        <X size={21} />
+                      </button>
+                    </div>
         <h1 className="mb-2 text-center text-3xl font-bold text-purple-600">
           Welcome to Pretalk
         </h1>

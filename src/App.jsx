@@ -17,13 +17,17 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<><LandingPage />  
-          <Footer /> </> }/>
-
+          element={
+            <>
+              <LandingPage />
+              <Footer />{" "}
+            </>
+          }
+        />
         <Route path="/matching" element={<Matching />} />
         <Route path="/HomePage" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-<Route path="/chat" element={<ChatPage />} />
+        <Route path="/chat" element={<ChatPage />} />
         <Route path="/friends" element={<FriendsPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/editprofile" element={<EditprofilePage />} />
